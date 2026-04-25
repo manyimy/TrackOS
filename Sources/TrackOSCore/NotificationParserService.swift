@@ -6,6 +6,10 @@ final class NotificationParserService {
         parse(text: "\(notificationTitle) \(notificationBody)")
     }
 
+    func inferCategoryPublic(from text: String) -> ExpenseCategory {
+        inferCategory(from: text, merchant: text)
+    }
+
     func parse(text: String) -> ParsedExpense? {
         guard let (amount, currency) = extractAmount(from: text) else { return nil }
         let merchant = extractMerchant(from: text) ?? "Unknown Merchant"
