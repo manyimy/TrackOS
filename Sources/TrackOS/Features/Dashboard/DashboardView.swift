@@ -12,10 +12,14 @@ struct DashboardView: View {
                 VStack(spacing: 20) {
                     SummaryCardView(
                         total: viewModel.monthlyTotal(expenses),
+                        currency: viewModel.dominantCurrency(expenses),
                         count: viewModel.currentMonthExpenses(expenses).count
                     )
 
-                    CategoryBreakdownView(breakdown: viewModel.categoryBreakdown(expenses))
+                    CategoryBreakdownView(
+                        breakdown: viewModel.categoryBreakdown(expenses),
+                        currency: viewModel.dominantCurrency(expenses)
+                    )
 
                     RecentExpensesView(expenses: Array(expenses.prefix(5)))
                 }
@@ -43,6 +47,7 @@ struct DashboardView: View {
 
 private struct SummaryCardView: View {
     let total: Double
+    let currency: String
     let count: Int
 
     var body: some View {
@@ -50,7 +55,7 @@ private struct SummaryCardView: View {
             Text("This Month")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            Text(total, format: .currency(code: "USD"))
+            Text(total, format: .currency(code: currency))
                 .font(.system(size: 42, weight: .bold, design: .rounded))
             Text("\(count) expense\(count == 1 ? "" : "s")")
                 .font(.caption)
@@ -65,6 +70,7 @@ private struct SummaryCardView: View {
 
 private struct CategoryBreakdownView: View {
     let breakdown: [(category: ExpenseCategory, total: Double)]
+    let currency: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -89,7 +95,7 @@ private struct CategoryBreakdownView: View {
 
                         Spacer()
 
-                        Text(item.total, format: .currency(code: "USD"))
+                        Text(item.total, format: .currency(code: currency))
                             .font(.subheadline)
                             .fontWeight(.medium)
                     }

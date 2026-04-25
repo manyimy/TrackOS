@@ -95,21 +95,32 @@ final class ReceiptOCRService {
 
         // Fall back to the largest amount found anywhere
         var max: Double = 0
-        var currency = "USD"
+        var currency = "MYR"
         for line in lines {
             if let (amount, curr) = extractAmountFromLine(line), amount > max {
                 max = amount
                 currency = curr
             }
         }
-        return max > 0 ? (max, currency) : (nil, "USD")
+        return max > 0 ? (max, currency) : (nil, "MYR")
     }
 
     func extractAmountFromLine(_ line: String) -> (Double, String)? {
         let patterns: [(String, String)] = [
+            // Multi-char symbols first to avoid partial matches
+            ("RM\\s?([\\d,]+\\.\\d{2})", "MYR"),
+            ("S\\$([\\d,]+\\.\\d{2})", "SGD"),
+            ("HK\\$([\\d,]+\\.\\d{2})", "HKD"),
+            ("A\\$([\\d,]+\\.\\d{2})", "AUD"),
+            ("C\\$([\\d,]+\\.\\d{2})", "CAD"),
+            ("RMB\\s?([\\d,]+\\.?\\d{0,2})", "CNY"),
+            // Single-char symbols
             ("\\$([\\d,]+\\.\\d{2})", "USD"),
             ("€([\\d,]+\\.\\d{2})", "EUR"),
             ("£([\\d,]+\\.\\d{2})", "GBP"),
+            ("¥([\\d,]+\\.?\\d{0,2})", "JPY"),
+            ("₹([\\d,]+\\.\\d{2})", "INR"),
+            ("฿([\\d,]+\\.\\d{2})", "THB"),
         ]
         for (pattern, currency) in patterns {
             guard let regex = try? NSRegularExpression(pattern: pattern),

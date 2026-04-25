@@ -16,7 +16,7 @@ final class Expense {
 
     init(
         amount: Double,
-        currency: String = "USD",
+        currency: String = "MYR",
         merchant: String,
         category: ExpenseCategory = .other,
         date: Date = Date(),

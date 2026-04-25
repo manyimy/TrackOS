@@ -6,13 +6,13 @@ struct AddExpenseView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var amount: Double = 0
-    @State private var currency: String = "USD"
+    @State private var currency: String = "MYR"
     @State private var merchant: String = ""
     @State private var category: ExpenseCategory = .other
     @State private var date: Date = Date()
     @State private var notes: String = ""
 
-    private let currencies = ["USD", "EUR", "GBP", "CAD", "AUD", "JPY", "CHF", "INR"]
+    private let currencies = ["MYR", "USD", "CNY", "JPY", "GBP", "EUR", "SGD", "HKD", "AUD", "CAD", "THB", "IDR", "INR", "KRW", "CHF", "TWD"]
 
     var body: some View {
         NavigationStack {
