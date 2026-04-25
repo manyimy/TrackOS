@@ -1,123 +1,91 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 610" width="260">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 610" width="260" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif">
   <defs>
-    <linearGradient id="d-sum" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#DBEAFE"/>
-      <stop offset="100%" stop-color="#EFF6FF"/>
+    <clipPath id="d-screen"><rect x="8" y="8" width="284" height="594" rx="38"/></clipPath>
+    <linearGradient id="d-blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A6BDC"/>
+      <stop offset="100%" stop-color="#4FA3FF"/>
     </linearGradient>
-    <clipPath id="d-screen"><rect x="8" y="8" width="284" height="594" rx="42"/></clipPath>
   </defs>
+  <!-- Phone shell -->
+  <rect width="300" height="610" rx="44" fill="#1C1C1E"/>
+  <!-- Screen bg -->
+  <rect x="8" y="8" width="284" height="594" rx="38" fill="#F2F2F7" clip-path="url(#d-screen)"/>
+  <!-- Dynamic Island -->
+  <rect x="105" y="18" width="90" height="28" rx="14" fill="#1C1C1E"/>
+  <!-- Status time -->
+  <text x="28" y="38" font-size="13" font-weight="600" fill="#1C1C1E">9:41</text>
 
-  <!-- Phone body -->
-  <rect x="1" y="1" width="298" height="608" rx="48" fill="#1C1C1E"/>
-  <rect x="0" y="148" width="2" height="32" rx="1" fill="#2C2C2E"/>
-  <rect x="0" y="196" width="2" height="52" rx="1" fill="#2C2C2E"/>
-  <rect x="0" y="258" width="2" height="52" rx="1" fill="#2C2C2E"/>
-  <rect x="298" y="178" width="2" height="72" rx="1" fill="#2C2C2E"/>
+  <!-- Nav title -->
+  <text x="20" y="82" font-size="26" font-weight="700" fill="#1C1C1E">Dashboard</text>
+  <!-- Avatar circle -->
+  <circle cx="272" cy="70" r="16" fill="#1A6BDC" fill-opacity="0.15"/>
+  <text x="272" y="75" font-size="14" text-anchor="middle" fill="#1A6BDC" font-weight="600">T</text>
 
-  <g clip-path="url(#d-screen)">
-    <rect x="8" y="8" width="284" height="594" fill="#F2F2F7"/>
+  <!-- Summary Card -->
+  <rect x="16" y="96" width="268" height="130" rx="22" fill="url(#d-blue)"/>
+  <circle cx="250" cy="110" r="52" fill="white" fill-opacity="0.06"/>
+  <circle cx="268" cy="190" r="40" fill="white" fill-opacity="0.04"/>
+  <text x="32" y="118" font-size="12" fill="white" fill-opacity="0.8">Good morning · April 2026</text>
+  <text x="32" y="140" font-size="11" fill="white" fill-opacity="0.65">Total spent</text>
+  <text x="32" y="170" font-size="30" font-weight="700" fill="white">MYR 2,840.50</text>
+  <rect x="32" y="182" width="98" height="20" rx="10" fill="white" fill-opacity="0.2"/>
+  <text x="81" y="196" font-size="11" fill="white" text-anchor="middle">24 expenses</text>
+  <text x="148" y="196" font-size="11" fill="white" fill-opacity="0.7">↑ 12% vs last month</text>
 
-    <!-- Status bar -->
-    <rect x="8" y="8" width="284" height="46" fill="white"/>
-    <rect x="110" y="13" width="80" height="28" rx="14" fill="#1C1C1E"/>
-    <text x="26" y="34" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="600" fill="#000">9:41</text>
-    <rect x="246" y="23" width="26" height="12" rx="3" fill="none" stroke="#000" stroke-width="1.2" opacity="0.6"/>
-    <rect x="272" y="26" width="2" height="6" rx="1" fill="#000" opacity="0.4"/>
-    <rect x="247" y="24" width="19" height="10" rx="2" fill="#34C759"/>
-    <rect x="226" y="30" width="3" height="6" rx="1" fill="#000" opacity="0.7"/>
-    <rect x="232" y="27" width="3" height="9" rx="1" fill="#000" opacity="0.7"/>
-    <rect x="238" y="24" width="3" height="12" rx="1" fill="#000" opacity="0.7"/>
+  <!-- Period Picker -->
+  <rect x="16" y="240" width="268" height="34" rx="11" fill="#E5E5EA"/>
+  <rect x="18" y="242" width="86" height="30" rx="9" fill="white"/>
+  <text x="61" y="261" font-size="13" font-weight="600" fill="#1C1C1E" text-anchor="middle">Week</text>
+  <text x="152" y="261" font-size="13" fill="#8E8E93" text-anchor="middle">Month</text>
+  <text x="243" y="261" font-size="13" fill="#8E8E93" text-anchor="middle">Year</text>
 
-    <!-- Nav bar large title -->
-    <rect x="8" y="54" width="284" height="82" fill="white"/>
-    <text x="22" y="114" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="30" font-weight="700" fill="#000">TrackOS</text>
-    <circle cx="266" cy="98" r="15" fill="#EBF5FF"/>
-    <text x="266" y="104" font-family="-apple-system,sans-serif" font-size="22" font-weight="300" fill="#007AFF" text-anchor="middle">+</text>
+  <!-- Donut chart -->
+  <circle cx="150" cy="348" r="58" fill="none" stroke="#FF9F0A" stroke-width="20" stroke-dasharray="92 292" stroke-dashoffset="0"/>
+  <circle cx="150" cy="348" r="58" fill="none" stroke="#30D158" stroke-width="20" stroke-dasharray="70 292" stroke-dashoffset="-92"/>
+  <circle cx="150" cy="348" r="58" fill="none" stroke="#5E5CE6" stroke-width="20" stroke-dasharray="60 292" stroke-dashoffset="-162"/>
+  <circle cx="150" cy="348" r="58" fill="none" stroke="#FF375F" stroke-width="20" stroke-dasharray="70 292" stroke-dashoffset="-222"/>
+  <!-- Centre text -->
+  <text x="150" y="342" font-size="16" font-weight="700" fill="#1C1C1E" text-anchor="middle">MYR</text>
+  <text x="150" y="360" font-size="12" fill="#8E8E93" text-anchor="middle">2,840</text>
 
-    <!-- Page background -->
-    <rect x="8" y="136" width="284" height="380" fill="#F2F2F7"/>
+  <!-- Legend -->
+  <rect x="28" y="418" width="10" height="10" rx="5" fill="#FF9F0A"/>
+  <text x="44" y="427" font-size="11" fill="#1C1C1E">Food  33%</text>
+  <rect x="130" y="418" width="10" height="10" rx="5" fill="#30D158"/>
+  <text x="146" y="427" font-size="11" fill="#1C1C1E">Transport  24%</text>
+  <rect x="28" y="436" width="10" height="10" rx="5" fill="#5E5CE6"/>
+  <text x="44" y="445" font-size="11" fill="#1C1C1E">Shopping  19%</text>
+  <rect x="130" y="436" width="10" height="10" rx="5" fill="#FF375F"/>
+  <text x="146" y="445" font-size="11" fill="#1C1C1E">Other  24%</text>
 
-    <!-- Summary card -->
-    <rect x="16" y="144" width="268" height="90" rx="16" fill="url(#d-sum)"/>
-    <text x="30" y="167" font-family="-apple-system,sans-serif" font-size="12" fill="#6B7280">This Month</text>
-    <text x="30" y="198" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="28" font-weight="700" fill="#1D4ED8">RM 2,450.80</text>
-    <text x="30" y="218" font-family="-apple-system,sans-serif" font-size="11" fill="#9CA3AF">12 expenses</text>
+  <!-- Recent section -->
+  <text x="20" y="468" font-size="11" font-weight="600" fill="#8E8E93">RECENT</text>
 
-    <!-- Category card -->
-    <rect x="16" y="244" width="268" height="166" rx="16" fill="white"/>
-    <text x="30" y="266" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="15" font-weight="600" fill="#000">By Category</text>
-    <!-- Food -->
-    <rect x="30" y="274" width="22" height="22" rx="7" fill="#FFF7ED"/>
-    <rect x="37" y="280" width="8" height="2" rx="1" fill="#F97316"/>
-    <rect x="39" y="276" width="4" height="8" rx="1" fill="#F97316"/>
-    <text x="60" y="289" font-family="-apple-system,sans-serif" font-size="13" fill="#111827">Food &amp; Dining</text>
-    <text x="274" y="289" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="#111827" text-anchor="end">RM 680</text>
-    <line x1="30" y1="300" x2="274" y2="300" stroke="#F3F4F6" stroke-width="1"/>
-    <!-- Transport -->
-    <rect x="30" y="306" width="22" height="22" rx="7" fill="#EFF6FF"/>
-    <rect x="33" y="313" width="16" height="9" rx="3" fill="#3B82F6"/>
-    <circle cx="37" cy="323" r="3" fill="#3B82F6"/>
-    <circle cx="45" cy="323" r="3" fill="#3B82F6"/>
-    <text x="60" y="321" font-family="-apple-system,sans-serif" font-size="13" fill="#111827">Transportation</text>
-    <text x="274" y="321" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="#111827" text-anchor="end">RM 420</text>
-    <line x1="30" y1="332" x2="274" y2="332" stroke="#F3F4F6" stroke-width="1"/>
-    <!-- Shopping -->
-    <rect x="30" y="338" width="22" height="22" rx="7" fill="#F5F3FF"/>
-    <rect x="34" y="342" width="14" height="14" rx="3" fill="none" stroke="#8B5CF6" stroke-width="1.8"/>
-    <text x="60" y="353" font-family="-apple-system,sans-serif" font-size="13" fill="#111827">Shopping</text>
-    <text x="274" y="353" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="#111827" text-anchor="end">RM 315</text>
-    <line x1="30" y1="364" x2="274" y2="364" stroke="#F3F4F6" stroke-width="1"/>
-    <!-- Groceries -->
-    <rect x="30" y="370" width="22" height="22" rx="7" fill="#F0FDF4"/>
-    <rect x="33" y="374" width="16" height="14" rx="2" fill="none" stroke="#10B981" stroke-width="1.8"/>
-    <line x1="37" y1="374" x2="37" y2="380" stroke="#10B981" stroke-width="1.5"/>
-    <text x="60" y="385" font-family="-apple-system,sans-serif" font-size="13" fill="#111827">Groceries</text>
-    <text x="274" y="385" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="#111827" text-anchor="end">RM 298</text>
-    <line x1="30" y1="396" x2="274" y2="396" stroke="#F3F4F6" stroke-width="1"/>
+  <!-- Row 1 -->
+  <rect x="16" y="475" width="268" height="46" rx="14" fill="white"/>
+  <rect x="28" y="485" width="26" height="26" rx="8" fill="#FF9F0A22"/>
+  <text x="41" y="502" font-size="13" text-anchor="middle">☕</text>
+  <text x="64" y="496" font-size="12" font-weight="600" fill="#1C1C1E">Starbucks</text>
+  <text x="64" y="510" font-size="10" fill="#8E8E93">Apr 25</text>
+  <text x="272" y="502" font-size="12" font-weight="600" fill="#1C1C1E" text-anchor="end">MYR 18.00</text>
 
-    <!-- Recent card -->
-    <rect x="16" y="420" width="268" height="90" rx="16" fill="white"/>
-    <text x="30" y="442" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="15" font-weight="600" fill="#000">Recent</text>
-    <!-- Row 1 -->
-    <rect x="30" y="450" width="28" height="28" rx="8" fill="#FFF7ED"/>
-    <rect x="38" y="458" width="12" height="2" rx="1" fill="#F97316"/>
-    <rect x="42" y="452" width="4" height="10" rx="1" fill="#F97316"/>
-    <text x="66" y="463" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="#000">Starbucks</text>
-    <text x="66" y="475" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Today</text>
-    <text x="274" y="467" font-family="-apple-system,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="end">RM 18.00</text>
-    <!-- Row 2 -->
-    <rect x="30" y="482" width="28" height="28" rx="8" fill="#EFF6FF"/>
-    <rect x="33" y="490" width="22" height="11" rx="3" fill="#3B82F6"/>
-    <circle cx="38" cy="503" r="3" fill="#3B82F6"/>
-    <circle cx="50" cy="503" r="3" fill="#3B82F6"/>
-    <text x="66" y="495" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="#000">Grab</text>
-    <text x="66" y="507" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Yesterday</text>
-    <text x="274" y="499" font-family="-apple-system,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="end">RM 12.50</text>
+  <!-- Row 2 -->
+  <rect x="16" y="524" width="268" height="46" rx="14" fill="white"/>
+  <rect x="28" y="534" width="26" height="26" rx="8" fill="#30D15822"/>
+  <text x="41" y="551" font-size="13" text-anchor="middle">🚗</text>
+  <text x="64" y="545" font-size="12" font-weight="600" fill="#1C1C1E">Grab</text>
+  <text x="64" y="559" font-size="10" fill="#8E8E93">Apr 24</text>
+  <text x="272" y="551" font-size="12" font-weight="600" fill="#1C1C1E" text-anchor="end">MYR 14.00</text>
 
-    <!-- Tab bar -->
-    <rect x="8" y="516" width="284" height="86" fill="white"/>
-    <line x1="8" y1="516" x2="292" y2="516" stroke="#E5E5EA" stroke-width="0.5"/>
-    <!-- Dashboard (active) -->
-    <circle cx="44" cy="535" r="12" fill="#EBF5FF"/>
-    <circle cx="44" cy="535" r="5" fill="#007AFF"/>
-    <text x="44" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#007AFF" text-anchor="middle">Dashboard</text>
-    <!-- Expenses -->
-    <rect x="107" y="526" width="16" height="2" rx="1" fill="#8E8E93"/>
-    <rect x="107" y="531" width="16" height="2" rx="1" fill="#8E8E93"/>
-    <rect x="107" y="536" width="10" height="2" rx="1" fill="#8E8E93"/>
-    <text x="115" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Expenses</text>
-    <!-- Scan -->
-    <rect x="178" y="525" width="16" height="18" rx="4" fill="none" stroke="#8E8E93" stroke-width="1.5"/>
-    <rect x="181" y="529" width="10" height="2" rx="0.5" fill="#8E8E93"/>
-    <rect x="181" y="533" width="10" height="2" rx="0.5" fill="#8E8E93"/>
-    <rect x="181" y="537" width="6" height="2" rx="0.5" fill="#8E8E93"/>
-    <text x="186" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Scan</text>
-    <!-- Notifications -->
-    <path d="M249 526 C249 526 244 526 244 531 L244 537 L257 537 L257 531 C257 526 252 526 252 526 Z" fill="none" stroke="#8E8E93" stroke-width="1.5" stroke-linejoin="round"/>
-    <rect x="247" y="537" width="9" height="2" rx="1" fill="#8E8E93"/>
-    <text x="251" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Notifications</text>
-
-    <!-- Home indicator -->
-    <rect x="112" y="591" width="76" height="4" rx="2" fill="#000" opacity="0.2"/>
-  </g>
+  <!-- Tab Bar -->
+  <rect x="8" y="562" width="284" height="40" fill="white" fill-opacity="0.95"/>
+  <line x1="8" y1="562" x2="292" y2="562" stroke="#E5E5EA" stroke-width="0.5"/>
+  <text x="54" y="577" font-size="10" fill="#007AFF" text-anchor="middle">◼</text>
+  <text x="54" y="589" font-size="9" fill="#007AFF" text-anchor="middle" font-weight="600">Dashboard</text>
+  <text x="114" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">≡</text>
+  <text x="114" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Expenses</text>
+  <text x="174" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">⬚</text>
+  <text x="174" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Scanner</text>
+  <text x="234" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">🔔</text>
+  <text x="234" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Inbox</text>
 </svg>
