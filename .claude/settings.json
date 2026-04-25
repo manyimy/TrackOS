@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /home/user/TrackOS/scripts/run_tests.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

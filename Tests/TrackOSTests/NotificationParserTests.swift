@@ -1,5 +1,5 @@
 import XCTest
-@testable import TrackOS
+@testable import TrackOSCore
 
 final class NotificationParserTests: XCTestCase {
     let parser = NotificationParserService()
