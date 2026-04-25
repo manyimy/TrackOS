@@ -29,7 +29,7 @@ struct DashboardView: View {
                     .padding(.top, 8)
                     .padding(.bottom, 104)
                 }
-                .background(Color(.systemGroupedBackground))
+                .background(Theme.background)
 
                 fab
             }
@@ -45,16 +45,19 @@ struct DashboardView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(viewModel.greeting)
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.textSecondary)
                 Text("TrackOS")
                     .font(.title.bold())
+                    .foregroundStyle(Theme.textPrimary)
             }
             Spacer()
             Circle()
-                .fill(.blue.gradient)
+                .fill(Theme.primaryLight)
                 .frame(width: 42, height: 42)
                 .overlay {
-                    Text("T").font(.headline.bold()).foregroundStyle(.white)
+                    Text("T")
+                        .font(.headline.bold())
+                        .foregroundStyle(Theme.primary)
                 }
         }
     }
@@ -63,11 +66,15 @@ struct DashboardView: View {
 
     private var summaryCard: some View {
         ZStack(alignment: .topLeading) {
-            // Background
             RoundedRectangle(cornerRadius: 24)
-                .fill(.blue.gradient)
+                .fill(
+                    LinearGradient(
+                        colors: [Theme.primary, Theme.primaryMid],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
 
-            // Decorative blobs
             Circle()
                 .fill(.white.opacity(0.07))
                 .frame(width: 220)
@@ -85,7 +92,7 @@ struct DashboardView: View {
                     Spacer()
                     Label("\(periodExpenses.count)", systemImage: "creditcard.fill")
                         .font(.caption.weight(.medium))
-                        .foregroundStyle(.white.opacity(0.85))
+                        .foregroundStyle(.white.opacity(0.9))
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
                         .background(.white.opacity(0.18))
@@ -109,7 +116,7 @@ struct DashboardView: View {
             .padding(24)
         }
         .frame(height: 162)
-        .shadow(color: .blue.opacity(0.28), radius: 20, y: 8)
+        .shadow(color: Theme.primary.opacity(0.28), radius: 20, y: 8)
     }
 
     // MARK: - Period Picker
@@ -125,14 +132,14 @@ struct DashboardView: View {
                     Text(period.rawValue)
                         .font(.subheadline)
                         .fontWeight(selectedPeriod == period ? .semibold : .regular)
-                        .foregroundStyle(selectedPeriod == period ? .primary : .secondary)
+                        .foregroundStyle(selectedPeriod == period ? Theme.primary : Theme.textSecondary)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 9)
                         .background {
                             if selectedPeriod == period {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color(.systemBackground))
-                                    .shadow(color: .black.opacity(0.08), radius: 8, y: 2)
+                                    .fill(Theme.card)
+                                    .shadow(color: Theme.primary.opacity(0.12), radius: 8, y: 2)
                             }
                         }
                 }
@@ -140,7 +147,7 @@ struct DashboardView: View {
             }
         }
         .padding(4)
-        .background(Color(.systemFill))
+        .background(Theme.primaryLight.opacity(0.5))
         .clipShape(RoundedRectangle(cornerRadius: 14))
     }
 
@@ -150,9 +157,9 @@ struct DashboardView: View {
         VStack(alignment: .leading, spacing: 16) {
             Text("By Category")
                 .font(.headline)
+                .foregroundStyle(Theme.textPrimary)
 
             HStack(alignment: .center, spacing: 16) {
-                // Donut
                 ZStack {
                     Chart(breakdown.prefix(6), id: \.category) { item in
                         SectorMark(
@@ -164,18 +171,17 @@ struct DashboardView: View {
                         .foregroundStyle(item.category.color)
                     }
 
-                    // Centre label
                     VStack(spacing: 1) {
                         Text(breakdown.count.description)
                             .font(.title3.bold())
+                            .foregroundStyle(Theme.textPrimary)
                         Text("categories")
                             .font(.system(size: 9))
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(Theme.textSecondary)
                     }
                 }
                 .frame(width: 120, height: 120)
 
-                // Legend
                 VStack(alignment: .leading, spacing: 9) {
                     ForEach(breakdown.prefix(5), id: \.category) { item in
                         HStack(spacing: 8) {
@@ -184,20 +190,21 @@ struct DashboardView: View {
                                 .frame(width: 10, height: 10)
                             Text(item.category.rawValue)
                                 .font(.caption)
+                                .foregroundStyle(Theme.textPrimary)
                                 .lineLimit(1)
                             Spacer(minLength: 4)
                             Text(item.total, format: .currency(code: currency))
                                 .font(.caption.weight(.medium))
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Theme.textSecondary)
                         }
                     }
                 }
             }
         }
         .padding(20)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(Theme.card)
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        .shadow(color: .black.opacity(0.04), radius: 12, y: 4)
+        .shadow(color: Theme.primaryDark.opacity(0.06), radius: 12, y: 4)
     }
 
     // MARK: - Recent Transactions
@@ -207,9 +214,11 @@ struct DashboardView: View {
             HStack {
                 Text("Recent")
                     .font(.headline)
+                    .foregroundStyle(Theme.textPrimary)
                 Spacer()
                 NavigationLink("See all") { ExpenseListView() }
                     .font(.subheadline)
+                    .foregroundStyle(Theme.primary)
             }
 
             if expenses.isEmpty {
@@ -221,13 +230,15 @@ struct DashboardView: View {
                             .padding(.horizontal, 16)
                             .padding(.vertical, 10)
                         if idx < min(4, expenses.count - 1) {
-                            Divider().padding(.leading, 64)
+                            Divider()
+                                .background(Theme.border)
+                                .padding(.leading, 64)
                         }
                     }
                 }
-                .background(Color(.secondarySystemGroupedBackground))
+                .background(Theme.card)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                .shadow(color: .black.opacity(0.04), radius: 12, y: 4)
+                .shadow(color: Theme.primaryDark.opacity(0.06), radius: 12, y: 4)
             }
         }
     }
@@ -236,16 +247,17 @@ struct DashboardView: View {
         VStack(spacing: 12) {
             Image(systemName: "chart.pie.fill")
                 .font(.system(size: 40))
-                .foregroundStyle(.blue.opacity(0.3))
+                .foregroundStyle(Theme.primaryLight)
             Text("No expenses yet")
                 .font(.subheadline.weight(.medium))
+                .foregroundStyle(Theme.textPrimary)
             Text("Tap + to add your first one")
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.textSecondary)
         }
         .frame(maxWidth: .infinity)
         .padding(40)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(Theme.card)
         .clipShape(RoundedRectangle(cornerRadius: 20))
     }
 
@@ -257,9 +269,9 @@ struct DashboardView: View {
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.white)
                 .frame(width: 58, height: 58)
-                .background(.blue)
+                .background(Theme.primary)
                 .clipShape(Circle())
-                .shadow(color: .blue.opacity(0.38), radius: 16, y: 8)
+                .shadow(color: Theme.primary.opacity(0.38), radius: 16, y: 8)
         }
         .padding(.trailing, 24)
         .padding(.bottom, 96)

@@ -36,7 +36,7 @@ struct ExpenseListView: View {
                         listContent
                     }
                 }
-                .background(Color(.systemGroupedBackground))
+                .background(Theme.background)
 
                 fab
             }
@@ -54,7 +54,6 @@ struct ExpenseListView: View {
 
     private var listContent: some View {
         List {
-            // Category filter chips
             Section {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
@@ -74,7 +73,6 @@ struct ExpenseListView: View {
                 .listRowSeparator(.hidden)
             }
 
-            // Date-grouped rows
             ForEach(grouped, id: \.label) { group in
                 Section {
                     ForEach(group.expenses) { expense in
@@ -82,18 +80,20 @@ struct ExpenseListView: View {
                             ModernExpenseRow(expense: expense)
                                 .padding(.vertical, 4)
                         }
-                        .listRowBackground(Color(.secondarySystemGroupedBackground))
+                        .listRowBackground(Theme.card)
                     }
                     .onDelete { offsets in deleteExpenses(offsets, in: group.expenses) }
                 } header: {
                     Text(group.label)
                         .font(.footnote.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                         .textCase(nil)
                 }
             }
         }
         .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Theme.background)
     }
 
     // MARK: - Empty State
@@ -103,13 +103,14 @@ struct ExpenseListView: View {
             Spacer()
             Image(systemName: "tray.fill")
                 .font(.system(size: 52))
-                .foregroundStyle(.blue.opacity(0.25))
+                .foregroundStyle(Theme.primaryLight)
             VStack(spacing: 6) {
                 Text("No Expenses Yet")
                     .font(.title3.bold())
+                    .foregroundStyle(Theme.textPrimary)
                 Text("Tap + to add one manually, scan a receipt,\nor paste a notification.")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.textSecondary)
                     .multilineTextAlignment(.center)
             }
             Button { showAddExpense = true } label: {
@@ -117,7 +118,7 @@ struct ExpenseListView: View {
                     .font(.subheadline.weight(.semibold))
                     .padding(.horizontal, 20)
                     .padding(.vertical, 12)
-                    .background(.blue)
+                    .background(Theme.primary)
                     .foregroundStyle(.white)
                     .clipShape(Capsule())
             }
@@ -135,9 +136,9 @@ struct ExpenseListView: View {
                 .font(.title2.weight(.semibold))
                 .foregroundStyle(.white)
                 .frame(width: 58, height: 58)
-                .background(.blue)
+                .background(Theme.primary)
                 .clipShape(Circle())
-                .shadow(color: .blue.opacity(0.38), radius: 16, y: 8)
+                .shadow(color: Theme.primary.opacity(0.38), radius: 16, y: 8)
         }
         .padding(.trailing, 24)
         .padding(.bottom, 24)
@@ -155,10 +156,9 @@ struct ModernExpenseRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            // Category icon
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(expense.expenseCategory.color.opacity(0.14))
+                    .fill(expense.expenseCategory.color.opacity(0.12))
                     .frame(width: 44, height: 44)
                 Image(systemName: expense.expenseCategory.icon)
                     .font(.system(size: 18, weight: .medium))
@@ -168,17 +168,18 @@ struct ModernExpenseRow: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(expense.merchant)
                     .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(Theme.textPrimary)
                     .lineLimit(1)
                 HStack(spacing: 4) {
                     Text(expense.date, format: .dateTime.month(.abbreviated).day())
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                     Text("·")
                         .font(.caption)
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(Theme.textTertiary)
                     Image(systemName: expense.expenseSource.icon)
                         .font(.system(size: 10))
-                        .foregroundStyle(.tertiary)
+                        .foregroundStyle(Theme.textTertiary)
                 }
             }
 
@@ -186,7 +187,7 @@ struct ModernExpenseRow: View {
 
             Text(expense.amount, format: .currency(code: expense.currency))
                 .font(.subheadline.weight(.semibold))
-                .foregroundStyle(.primary)
+                .foregroundStyle(Theme.textPrimary)
         }
     }
 }
@@ -202,29 +203,35 @@ struct ExpenseDetailView: View {
                 DetailRow(label: "Amount") {
                     Text(expense.amount, format: .currency(code: expense.currency))
                         .fontWeight(.semibold)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(Theme.primary)
                 }
-                DetailRow(label: "Merchant") { Text(expense.merchant) }
+                DetailRow(label: "Merchant") {
+                    Text(expense.merchant)
+                        .foregroundStyle(Theme.textPrimary)
+                }
                 DetailRow(label: "Category") {
                     Label(expense.expenseCategory.rawValue, systemImage: expense.expenseCategory.icon)
                         .foregroundStyle(expense.expenseCategory.color)
                 }
                 DetailRow(label: "Date") {
                     Text(expense.date, format: .dateTime.month(.wide).day().year())
+                        .foregroundStyle(Theme.textPrimary)
                 }
                 DetailRow(label: "Source") {
                     Label(expense.expenseSource.rawValue, systemImage: expense.expenseSource.icon)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                 }
             }
 
             if let notes = expense.notes, !notes.isEmpty {
-                Section("Notes") { Text(notes).foregroundStyle(.secondary) }
+                Section("Notes") {
+                    Text(notes).foregroundStyle(Theme.textSecondary)
+                }
             }
 
             if let raw = expense.rawSourceText, !raw.isEmpty {
                 Section("Source Text") {
-                    Text(raw).font(.caption).foregroundStyle(.secondary)
+                    Text(raw).font(.caption).foregroundStyle(Theme.textSecondary)
                 }
             }
 
@@ -237,6 +244,8 @@ struct ExpenseDetailView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Theme.background)
         .navigationTitle(expense.merchant)
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -248,7 +257,7 @@ private struct DetailRow<Content: View>: View {
 
     var body: some View {
         HStack {
-            Text(label).foregroundStyle(.secondary)
+            Text(label).foregroundStyle(Theme.textSecondary)
             Spacer()
             content()
         }
@@ -260,7 +269,7 @@ private struct DetailRow<Content: View>: View {
 struct CategoryChip: View {
     let label: String
     let icon: String
-    var color: Color = .blue
+    var color: Color = Theme.primary
     let isSelected: Bool
     let action: () -> Void
 
@@ -274,8 +283,8 @@ struct CategoryChip: View {
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
-            .background(isSelected ? color : Color(.systemFill))
-            .foregroundStyle(isSelected ? .white : .primary)
+            .background(isSelected ? color : Theme.fill)
+            .foregroundStyle(isSelected ? .white : Theme.textSecondary)
             .clipShape(Capsule())
         }
         .buttonStyle(.plain)

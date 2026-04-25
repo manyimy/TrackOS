@@ -16,7 +16,7 @@ struct NotificationReviewView: View {
                     pendingList
                 }
             }
-            .background(Color(.systemGroupedBackground))
+            .background(Theme.background)
             .navigationTitle("Notifications")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
@@ -33,6 +33,7 @@ struct NotificationReviewView: View {
                         showPasteSheet = true
                     } label: {
                         Image(systemName: "doc.on.clipboard")
+                            .foregroundStyle(Theme.primary)
                     }
                 }
             }
@@ -51,17 +52,16 @@ struct NotificationReviewView: View {
     private var pendingList: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 14) {
-                // Summary banner
                 HStack(spacing: 10) {
                     Image(systemName: "sparkles")
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(Theme.primary)
                     Text("\(notificationMonitor.pendingExpenses.count) expense\(notificationMonitor.pendingExpenses.count == 1 ? "" : "s") detected — review before saving")
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                     Spacer()
                 }
                 .padding(14)
-                .background(.blue.opacity(0.07))
+                .background(Theme.primaryLight)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
 
                 ForEach(notificationMonitor.pendingExpenses) { parsed in
@@ -85,18 +85,19 @@ struct NotificationReviewView: View {
             Spacer()
             ZStack {
                 Circle()
-                    .fill(.blue.opacity(0.08))
+                    .fill(Theme.primaryLight)
                     .frame(width: 96, height: 96)
                 Image(systemName: "bell.slash.fill")
                     .font(.system(size: 36))
-                    .foregroundStyle(.blue.opacity(0.5))
+                    .foregroundStyle(Theme.primary.opacity(0.5))
             }
             VStack(spacing: 8) {
                 Text("No Pending Notifications")
                     .font(.title3.bold())
+                    .foregroundStyle(Theme.textPrimary)
                 Text("Financial notifications sent to TrackOS appear here.\nYou can also paste text from any banking app.")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.textSecondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
             }
@@ -107,10 +108,10 @@ struct NotificationReviewView: View {
                     .font(.subheadline.weight(.semibold))
                     .padding(.horizontal, 22)
                     .padding(.vertical, 13)
-                    .background(.blue)
+                    .background(Theme.primary)
                     .foregroundStyle(.white)
                     .clipShape(Capsule())
-                    .shadow(color: .blue.opacity(0.3), radius: 10, y: 4)
+                    .shadow(color: Theme.primary.opacity(0.3), radius: 10, y: 4)
             }
             Spacer()
         }
@@ -142,11 +143,10 @@ private struct PendingExpenseCard: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            // Top row: icon + merchant + amount
             HStack(spacing: 12) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(parsedExpense.category.color.opacity(0.14))
+                        .fill(parsedExpense.category.color.opacity(0.12))
                         .frame(width: 44, height: 44)
                     Image(systemName: parsedExpense.category.icon)
                         .font(.system(size: 18, weight: .medium))
@@ -156,51 +156,50 @@ private struct PendingExpenseCard: View {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(parsedExpense.merchant)
                         .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(Theme.textPrimary)
                         .lineLimit(1)
                     Text(parsedExpense.date, format: .dateTime.month(.abbreviated).day().hour().minute())
                         .font(.caption)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                 }
 
                 Spacer()
 
                 Text(parsedExpense.amount, format: .currency(code: parsedExpense.currency))
                     .font(.title3.bold())
+                    .foregroundStyle(Theme.textPrimary)
             }
 
-            // Category tag
             HStack {
                 Label(parsedExpense.category.rawValue, systemImage: parsedExpense.category.icon)
                     .font(.caption.weight(.medium))
                     .foregroundStyle(parsedExpense.category.color)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
-                    .background(parsedExpense.category.color.opacity(0.12))
+                    .background(parsedExpense.category.color.opacity(0.10))
                     .clipShape(Capsule())
-
                 Spacer()
             }
 
-            // Raw text preview
             if !parsedExpense.rawText.isEmpty {
                 Text("\"\(parsedExpense.rawText)\"")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.textSecondary)
                     .lineLimit(2)
                     .padding(10)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(.systemFill))
+                    .background(Theme.cardSecondary)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
 
-            // Action buttons
             HStack(spacing: 10) {
                 Button(action: onDismiss) {
                     Text("Dismiss")
                         .font(.subheadline.weight(.medium))
+                        .foregroundStyle(Theme.textSecondary)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
-                        .background(Color(.systemFill))
+                        .background(Theme.fill)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .buttonStyle(.plain)
@@ -208,19 +207,19 @@ private struct PendingExpenseCard: View {
                 Button(action: onApprove) {
                     Text("Add Expense")
                         .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 12)
-                        .background(.blue)
-                        .foregroundStyle(.white)
+                        .background(Theme.primary)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .buttonStyle(.plain)
             }
         }
         .padding(18)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(Theme.card)
         .clipShape(RoundedRectangle(cornerRadius: 20))
-        .shadow(color: .black.opacity(0.05), radius: 12, y: 4)
+        .shadow(color: Theme.primaryDark.opacity(0.06), radius: 12, y: 4)
     }
 }
 
@@ -235,28 +234,26 @@ struct PasteNotificationView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 20) {
-                // Instructions
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Paste bank or payment notification text below. TrackOS will extract the amount and merchant automatically.")
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                 }
 
-                // Text input
                 TextEditor(text: $text)
                     .focused($focused)
                     .font(.body)
+                    .foregroundStyle(Theme.textPrimary)
                     .scrollContentBackground(.hidden)
                     .padding(14)
                     .frame(minHeight: 120)
-                    .background(Color(.secondarySystemGroupedBackground))
+                    .background(Theme.cardSecondary)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
 
-                // Examples
                 VStack(alignment: .leading, spacing: 8) {
                     Text("Examples")
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                     ForEach([
                         "Maybank: RM42.50 charged at Starbucks",
                         "Grab: RM14.00 GrabCar ride completed",
@@ -266,39 +263,39 @@ struct PasteNotificationView: View {
                         HStack(alignment: .top, spacing: 8) {
                             Image(systemName: "text.quote")
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Theme.textTertiary)
                                 .padding(.top, 1)
                             Text(example)
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Theme.textSecondary)
                         }
                     }
                 }
                 .padding(14)
-                .background(Color(.systemFill))
+                .background(Theme.primaryLight.opacity(0.5))
                 .clipShape(RoundedRectangle(cornerRadius: 14))
 
                 Spacer()
 
-                // Parse button
                 Button(action: onParse) {
                     Text("Extract Expense")
                         .font(.subheadline.weight(.semibold))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
-                        .background(text.trimmingCharacters(in: .whitespaces).isEmpty ? Color(.systemFill) : .blue)
-                        .foregroundStyle(text.trimmingCharacters(in: .whitespaces).isEmpty ? Color(.tertiaryLabel) : .white)
+                        .background(text.trimmingCharacters(in: .whitespaces).isEmpty ? Theme.fill : Theme.primary)
+                        .foregroundStyle(text.trimmingCharacters(in: .whitespaces).isEmpty ? Theme.textTertiary : .white)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
                 .disabled(text.trimmingCharacters(in: .whitespaces).isEmpty)
             }
             .padding(20)
-            .background(Color(.systemGroupedBackground))
+            .background(Theme.background)
             .navigationTitle("Paste Notification")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .foregroundStyle(Theme.textSecondary)
                 }
             }
             .onAppear { focused = true }

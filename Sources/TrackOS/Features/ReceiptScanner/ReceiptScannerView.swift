@@ -35,25 +35,21 @@ struct ReceiptScannerView: View {
         VStack(spacing: 0) {
             Spacer()
 
-            // Hero visual
             ZStack {
-                // Outer ring
                 Circle()
-                    .stroke(.blue.opacity(0.1), lineWidth: 40)
+                    .fill(Theme.primaryLight.opacity(0.5))
                     .frame(width: 200, height: 200)
-                // Inner ring
                 Circle()
-                    .fill(.blue.opacity(0.06))
+                    .fill(Theme.primaryLight)
                     .frame(width: 140, height: 140)
-                // Icon
                 if viewModel.isProcessing {
                     ProgressView()
                         .controlSize(.large)
-                        .tint(.blue)
+                        .tint(Theme.primary)
                 } else {
                     Image(systemName: "doc.viewfinder.fill")
                         .font(.system(size: 56))
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(Theme.primary)
                 }
             }
             .padding(.bottom, 32)
@@ -61,11 +57,12 @@ struct ReceiptScannerView: View {
             VStack(spacing: 10) {
                 Text(viewModel.isProcessing ? "Analysing Receipt…" : "Scan a Receipt")
                     .font(.title2.bold())
+                    .foregroundStyle(Theme.textPrimary)
                 Text(viewModel.isProcessing
                      ? "Extracting merchant, amount and date"
                      : "Pick a photo — Vision OCR will extract\nmerchant, amount and date automatically.")
                     .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.textSecondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 32)
             }
@@ -80,10 +77,10 @@ struct ReceiptScannerView: View {
                             .font(.subheadline.weight(.semibold))
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
-                            .background(.blue)
+                            .background(Theme.primary)
                             .foregroundStyle(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .shadow(color: .blue.opacity(0.3), radius: 10, y: 5)
+                            .shadow(color: Theme.primary.opacity(0.3), radius: 10, y: 5)
                     }
                     .padding(.horizontal, 32)
 
@@ -98,18 +95,22 @@ struct ReceiptScannerView: View {
 
             Spacer()
 
-            // Tips footer
             HStack(spacing: 6) {
                 Image(systemName: "lightbulb.fill")
                     .foregroundStyle(.yellow)
                     .font(.caption)
                 Text("Tip: Flat receipts in good lighting give the best results")
                     .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Theme.textSecondary)
             }
+            .padding(.horizontal, 24)
+            .padding(.vertical, 12)
+            .background(Theme.card)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .padding(.horizontal, 20)
             .padding(.bottom, 32)
         }
-        .background(Color(.systemGroupedBackground))
+        .background(Theme.background)
     }
 }
 
@@ -143,51 +144,53 @@ struct ReceiptReviewView: View {
 
     var body: some View {
         List {
-            // Confidence banner
             Section {
                 HStack(spacing: 10) {
                     Image(systemName: "checkmark.seal.fill")
                         .foregroundStyle(.green)
                     Text("Receipt scanned — review and confirm details below")
                         .font(.subheadline)
+                        .foregroundStyle(Theme.textPrimary)
                 }
                 .padding(4)
             }
-            .listRowBackground(Color.green.opacity(0.07))
+            .listRowBackground(Color.green.opacity(0.06))
 
-            // Extracted fields
             Section("Extracted Details") {
                 HStack {
                     Label("Merchant", systemImage: "storefront")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                     Spacer()
                     TextField("Merchant", text: $merchant)
                         .multilineTextAlignment(.trailing)
+                        .foregroundStyle(Theme.textPrimary)
                 }
                 HStack {
                     Label("Amount", systemImage: "dollarsign.circle")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                     Spacer()
                     TextField("0.00", value: $amount, format: .number)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
+                        .foregroundStyle(Theme.textPrimary)
                         .frame(width: 100)
                 }
                 DatePicker(selection: $date, displayedComponents: .date) {
                     Label("Date", systemImage: "calendar")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                 }
+                .tint(Theme.primary)
                 Picker(selection: $category) {
                     ForEach(ExpenseCategory.allCases, id: \.self) { cat in
                         Label(cat.rawValue, systemImage: cat.icon).tag(cat)
                     }
                 } label: {
                     Label("Category", systemImage: "tag")
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                 }
+                .tint(Theme.primary)
             }
 
-            // Line items (expandable)
             if !receiptData.items.isEmpty {
                 Section {
                     Button {
@@ -195,22 +198,24 @@ struct ReceiptReviewView: View {
                     } label: {
                         HStack {
                             Text("Line Items (\(receiptData.items.count))")
-                                .foregroundStyle(.primary)
+                                .foregroundStyle(Theme.textPrimary)
                             Spacer()
                             Image(systemName: showLineItems ? "chevron.up" : "chevron.down")
                                 .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(Theme.textSecondary)
                         }
                     }
 
                     if showLineItems {
                         ForEach(receiptData.items.prefix(20)) { item in
                             HStack {
-                                Text(item.description).lineLimit(1)
+                                Text(item.description)
+                                    .foregroundStyle(Theme.textPrimary)
+                                    .lineLimit(1)
                                 Spacer()
                                 if let a = item.amount {
                                     Text(a, format: .currency(code: currency))
-                                        .foregroundStyle(.secondary)
+                                        .foregroundStyle(Theme.textSecondary)
                                 }
                             }
                             .font(.caption)
@@ -219,7 +224,6 @@ struct ReceiptReviewView: View {
                 }
             }
 
-            // Actions
             Section {
                 Button {
                     let expense = Expense(
@@ -235,7 +239,7 @@ struct ReceiptReviewView: View {
                 } label: {
                     Label("Save Expense", systemImage: "checkmark.circle.fill")
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(Theme.primary)
                         .fontWeight(.semibold)
                 }
                 .disabled(merchant.trimmingCharacters(in: .whitespaces).isEmpty || amount <= 0)
@@ -249,6 +253,8 @@ struct ReceiptReviewView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Theme.background)
         .navigationTitle("Review Receipt")
         .navigationBarTitleDisplayMode(.inline)
     }

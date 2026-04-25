@@ -1,77 +1,68 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 610" width="260" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif">
   <defs>
-    <clipPath id="nr-screen"><rect x="8" y="8" width="284" height="594" rx="38"/></clipPath>
+    <clipPath id="nr-clip"><rect x="8" y="8" width="284" height="594" rx="38"/></clipPath>
   </defs>
-  <!-- Phone shell -->
+
   <rect width="300" height="610" rx="44" fill="#1C1C1E"/>
-  <rect x="8" y="8" width="284" height="594" rx="38" fill="#F2F2F7" clip-path="url(#nr-screen)"/>
-  <!-- Dynamic Island -->
+  <rect x="8" y="8" width="284" height="594" rx="38" fill="#F0F7FF" clip-path="url(#nr-clip)"/>
   <rect x="105" y="18" width="90" height="28" rx="14" fill="#1C1C1E"/>
-  <text x="28" y="38" font-size="13" font-weight="600" fill="#1C1C1E">9:41</text>
+  <text x="28" y="38" font-size="13" font-weight="600" fill="#0F172A">9:41</text>
 
-  <!-- Nav title -->
-  <text x="20" y="82" font-size="26" font-weight="700" fill="#1C1C1E">Notifications</text>
-  <!-- Toolbar buttons -->
-  <text x="20" y="100" font-size="13" fill="#FF3B30">Clear All</text>
-  <text x="272" y="100" font-size="20" fill="#007AFF" text-anchor="end">⎘</text>
+  <!-- Nav -->
+  <text x="20" y="82" font-size="26" font-weight="700" fill="#0F172A">Notifications</text>
+  <text x="268" y="100" font-size="14" fill="#2563EB" text-anchor="end">⎘</text>
 
-  <!-- Summary banner -->
-  <rect x="16" y="108" width="268" height="36" rx="12" fill="#007AFF" fill-opacity="0.08"/>
-  <text x="32" y="130" font-size="12" fill="#007AFF">✦  2 expenses detected — review before saving</text>
+  <!-- Summary banner: #DBEAFE -->
+  <rect x="16" y="108" width="268" height="34" rx="12" fill="#DBEAFE"/>
+  <text x="32" y="130" font-size="11" fill="#2563EB">✦  2 expenses detected — review before saving</text>
 
-  <!-- === Card 1 === -->
-  <rect x="16" y="152" width="268" height="148" rx="20" fill="white" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.06))"/>
-  <!-- Icon -->
-  <rect x="30" y="166" width="40" height="40" rx="12" fill="#FF9F0A22"/>
-  <text x="50" y="191" font-size="20" text-anchor="middle">🍔</text>
-  <!-- Merchant info -->
-  <text x="80" y="182" font-size="13" font-weight="600" fill="#1C1C1E">McDonald's</text>
-  <text x="80" y="197" font-size="11" fill="#8E8E93">Apr 25, 10:32 AM</text>
-  <!-- Amount -->
-  <text x="272" y="190" font-size="16" font-weight="700" fill="#1C1C1E" text-anchor="end">MYR 24.90</text>
+  <!-- Card 1 -->
+  <rect x="16" y="150" width="268" height="152" rx="20" fill="white" filter="drop-shadow(0 4px 12px rgba(30,58,138,0.06))"/>
+  <rect x="28" y="164" width="40" height="40" rx="12" fill="#FF9F0A1A"/>
+  <text x="48" y="188" font-size="20" text-anchor="middle">🍔</text>
+  <text x="78" y="180" font-size="13" font-weight="600" fill="#0F172A">McDonald's</text>
+  <text x="78" y="195" font-size="10" fill="#64748B">Apr 25, 10:32 AM</text>
+  <text x="272" y="186" font-size="15" font-weight="700" fill="#0F172A" text-anchor="end">MYR 24.90</text>
   <!-- Category pill -->
-  <rect x="30" y="214" width="48" height="20" rx="10" fill="#FF9F0A22"/>
-  <text x="54" y="228" font-size="10" fill="#FF9F0A" text-anchor="middle" font-weight="600">🍔 Food</text>
-  <!-- Raw text preview -->
-  <rect x="30" y="240" width="240" height="28" rx="8" fill="#F2F2F7"/>
-  <text x="40" y="258" font-size="10" fill="#8E8E93">"Maybank: RM24.90 charged at McDonald's"</text>
-  <!-- Action buttons -->
-  <rect x="30" y="274" width="108" height="18" rx="9" fill="#F2F2F7"/>
-  <text x="84" y="287" font-size="11" fill="#1C1C1E" text-anchor="middle">Dismiss</text>
-  <rect x="146" y="274" width="124" height="18" rx="9" fill="#007AFF"/>
-  <text x="208" y="287" font-size="11" fill="white" text-anchor="middle" font-weight="600">Add Expense</text>
+  <rect x="28" y="210" width="50" height="20" rx="10" fill="#FF9F0A1A"/>
+  <text x="53" y="224" font-size="9" fill="#FF9F0A" text-anchor="middle" font-weight="600">🍔 Food</text>
+  <!-- Raw text -->
+  <rect x="28" y="236" width="240" height="26" rx="8" fill="#E8F1FD"/>
+  <text x="38" y="253" font-size="9" fill="#64748B">"Maybank: RM24.90 charged at McDonald's"</text>
+  <!-- Buttons -->
+  <rect x="28" y="270" width="108" height="26" rx="10" fill="#F1F5F9"/>
+  <text x="82" y="287" font-size="11" fill="#64748B" text-anchor="middle">Dismiss</text>
+  <rect x="144" y="270" width="120" height="26" rx="10" fill="#2563EB"/>
+  <text x="204" y="287" font-size="11" fill="white" text-anchor="middle" font-weight="600">Add Expense</text>
 
-  <!-- === Card 2 === -->
-  <rect x="16" y="308" width="268" height="148" rx="20" fill="white" filter="drop-shadow(0 4px 12px rgba(0,0,0,0.06))"/>
-  <!-- Icon -->
-  <rect x="30" y="322" width="40" height="40" rx="12" fill="#30D15822"/>
-  <text x="50" y="347" font-size="20" text-anchor="middle">🚗</text>
-  <!-- Merchant info -->
-  <text x="80" y="338" font-size="13" font-weight="600" fill="#1C1C1E">Grab</text>
-  <text x="80" y="353" font-size="11" fill="#8E8E93">Apr 25, 9:15 AM</text>
-  <!-- Amount -->
-  <text x="272" y="346" font-size="16" font-weight="700" fill="#1C1C1E" text-anchor="end">MYR 14.00</text>
+  <!-- Card 2 -->
+  <rect x="16" y="312" width="268" height="152" rx="20" fill="white" filter="drop-shadow(0 4px 12px rgba(30,58,138,0.06))"/>
+  <rect x="28" y="326" width="40" height="40" rx="12" fill="#30D1581A"/>
+  <text x="48" y="350" font-size="20" text-anchor="middle">🚗</text>
+  <text x="78" y="342" font-size="13" font-weight="600" fill="#0F172A">Grab</text>
+  <text x="78" y="357" font-size="10" fill="#64748B">Apr 25, 9:15 AM</text>
+  <text x="272" y="348" font-size="15" font-weight="700" fill="#0F172A" text-anchor="end">MYR 14.00</text>
   <!-- Category pill -->
-  <rect x="30" y="370" width="68" height="20" rx="10" fill="#30D15822"/>
-  <text x="64" y="384" font-size="10" fill="#30D158" text-anchor="middle" font-weight="600">🚗 Transport</text>
-  <!-- Raw text preview -->
-  <rect x="30" y="396" width="240" height="28" rx="8" fill="#F2F2F7"/>
-  <text x="40" y="414" font-size="10" fill="#8E8E93">"Grab: RM14.00 GrabCar ride completed"</text>
-  <!-- Action buttons -->
-  <rect x="30" y="430" width="108" height="18" rx="9" fill="#F2F2F7"/>
-  <text x="84" y="443" font-size="11" fill="#1C1C1E" text-anchor="middle">Dismiss</text>
-  <rect x="146" y="430" width="124" height="18" rx="9" fill="#007AFF"/>
-  <text x="208" y="443" font-size="11" fill="white" text-anchor="middle" font-weight="600">Add Expense</text>
+  <rect x="28" y="372" width="70" height="20" rx="10" fill="#30D1581A"/>
+  <text x="63" y="386" font-size="9" fill="#30D158" text-anchor="middle" font-weight="600">🚗 Transport</text>
+  <!-- Raw text -->
+  <rect x="28" y="398" width="240" height="26" rx="8" fill="#E8F1FD"/>
+  <text x="38" y="415" font-size="9" fill="#64748B">"Grab: RM14.00 GrabCar ride completed"</text>
+  <!-- Buttons -->
+  <rect x="28" y="432" width="108" height="26" rx="10" fill="#F1F5F9"/>
+  <text x="82" y="449" font-size="11" fill="#64748B" text-anchor="middle">Dismiss</text>
+  <rect x="144" y="432" width="120" height="26" rx="10" fill="#2563EB"/>
+  <text x="204" y="449" font-size="11" fill="white" text-anchor="middle" font-weight="600">Add Expense</text>
 
   <!-- Tab Bar -->
-  <rect x="8" y="562" width="284" height="40" fill="white" fill-opacity="0.95"/>
-  <line x1="8" y1="562" x2="292" y2="562" stroke="#E5E5EA" stroke-width="0.5"/>
-  <text x="54" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">◼</text>
-  <text x="54" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Dashboard</text>
-  <text x="114" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">≡</text>
-  <text x="114" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Expenses</text>
-  <text x="174" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">⬚</text>
-  <text x="174" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Scanner</text>
-  <text x="234" y="577" font-size="10" fill="#007AFF" text-anchor="middle">🔔</text>
-  <text x="234" y="589" font-size="9" fill="#007AFF" text-anchor="middle" font-weight="600">Inbox</text>
+  <rect x="8" y="562" width="284" height="40" fill="white"/>
+  <line x1="8" y1="562" x2="292" y2="562" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="54" y="577" font-size="10" fill="#94A3B8" text-anchor="middle">◼</text>
+  <text x="54" y="589" font-size="9" fill="#94A3B8" text-anchor="middle">Dashboard</text>
+  <text x="114" y="577" font-size="10" fill="#94A3B8" text-anchor="middle">≡</text>
+  <text x="114" y="589" font-size="9" fill="#94A3B8" text-anchor="middle">Expenses</text>
+  <text x="174" y="577" font-size="10" fill="#94A3B8" text-anchor="middle">⬚</text>
+  <text x="174" y="589" font-size="9" fill="#94A3B8" text-anchor="middle">Scanner</text>
+  <text x="234" y="577" font-size="10" fill="#2563EB" text-anchor="middle">🔔</text>
+  <text x="234" y="589" font-size="9" fill="#2563EB" text-anchor="middle" font-weight="600">Inbox</text>
 </svg>

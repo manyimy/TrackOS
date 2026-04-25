@@ -32,16 +32,18 @@ struct AddExpenseView: View {
                 .padding(.top, 8)
                 .padding(.bottom, 40)
             }
-            .background(Color(.systemGroupedBackground))
+            .background(Theme.background)
             .navigationTitle("New Expense")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                        .foregroundStyle(Theme.textSecondary)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save", action: save)
                         .fontWeight(.semibold)
+                        .foregroundStyle(canSave ? Theme.primary : Theme.textTertiary)
                         .disabled(!canSave)
                 }
             }
@@ -52,7 +54,6 @@ struct AddExpenseView: View {
 
     private var amountSection: some View {
         VStack(spacing: 12) {
-            // Currency row
             HStack {
                 Spacer()
                 Menu {
@@ -66,27 +67,25 @@ struct AddExpenseView: View {
                         Image(systemName: "chevron.up.chevron.down")
                             .font(.caption)
                     }
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(Theme.primary)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 7)
-                    .background(.blue.opacity(0.1))
+                    .background(Theme.primaryLight)
                     .clipShape(Capsule())
                 }
                 Spacer()
             }
 
-            // Big amount display
             ZStack(alignment: .center) {
                 Text(amountText.isEmpty ? "0.00" : amountText)
                     .font(.system(size: 56, weight: .bold, design: .rounded))
-                    .foregroundStyle(amountText.isEmpty ? Color(.tertiaryLabel) : .primary)
+                    .foregroundStyle(amountText.isEmpty ? Theme.textTertiary : Theme.textPrimary)
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 72)
 
-            // Hidden text field driving the keyboard
             TextField("", text: $amountText)
                 .keyboardType(.decimalPad)
                 .focused($amountFocused)
@@ -94,8 +93,9 @@ struct AddExpenseView: View {
                 .frame(height: 0)
         }
         .padding(20)
-        .background(Color(.secondarySystemGroupedBackground))
+        .background(Theme.card)
         .clipShape(RoundedRectangle(cornerRadius: 20))
+        .shadow(color: Theme.primaryDark.opacity(0.06), radius: 12, y: 4)
         .onTapGesture { amountFocused = true }
     }
 
@@ -107,14 +107,16 @@ struct AddExpenseView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text("Where did you spend?")
                 .font(.footnote.weight(.semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.textSecondary)
                 .textCase(.uppercase)
 
             TextField("Merchant name", text: $merchant)
                 .font(.body)
+                .foregroundStyle(Theme.textPrimary)
                 .padding(14)
-                .background(Color(.secondarySystemGroupedBackground))
+                .background(Theme.card)
                 .clipShape(RoundedRectangle(cornerRadius: 14))
+                .shadow(color: Theme.primaryDark.opacity(0.04), radius: 8, y: 2)
                 .onChange(of: merchant) { _, newValue in
                     autoDetectCategory(from: newValue)
                 }
@@ -127,7 +129,7 @@ struct AddExpenseView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Category")
                 .font(.footnote.weight(.semibold))
-                .foregroundStyle(.secondary)
+                .foregroundStyle(Theme.textSecondary)
                 .textCase(.uppercase)
 
             LazyVGrid(columns: columns, spacing: 10) {
@@ -155,44 +157,51 @@ struct AddExpenseView: View {
                 HStack {
                     Text("More details")
                         .font(.subheadline.weight(.medium))
+                        .foregroundStyle(Theme.textPrimary)
                     Spacer()
                     Image(systemName: showDetails ? "chevron.up" : "chevron.down")
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Theme.textSecondary)
                 }
                 .padding(16)
             }
             .buttonStyle(.plain)
-            .background(Color(.secondarySystemGroupedBackground))
+            .background(Theme.card)
             .clipShape(RoundedRectangle(cornerRadius: showDetails ? 0 : 16, style: .continuous))
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 16, topTrailingRadius: 16))
 
             if showDetails {
                 VStack(spacing: 1) {
-                    Divider().padding(.horizontal, 16)
+                    Divider()
+                        .background(Theme.border)
+                        .padding(.horizontal, 16)
 
                     HStack {
                         Text("Date")
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(Theme.textSecondary)
                         Spacer()
                         DatePicker("", selection: $date, displayedComponents: .date)
                             .labelsHidden()
+                            .tint(Theme.primary)
                     }
                     .padding(16)
-                    .background(Color(.secondarySystemGroupedBackground))
+                    .background(Theme.card)
 
-                    Divider().padding(.horizontal, 16)
+                    Divider()
+                        .background(Theme.border)
+                        .padding(.horizontal, 16)
 
                     TextField("Add a note…", text: $notes, axis: .vertical)
                         .lineLimit(2...4)
+                        .foregroundStyle(Theme.textPrimary)
                         .padding(16)
-                        .background(Color(.secondarySystemGroupedBackground))
+                        .background(Theme.card)
                 }
                 .clipShape(UnevenRoundedRectangle(bottomLeadingRadius: 16, bottomTrailingRadius: 16))
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(color: .black.opacity(0.04), radius: 8, y: 2)
+        .shadow(color: Theme.primaryDark.opacity(0.05), radius: 8, y: 2)
     }
 
     // MARK: - Helpers
@@ -232,7 +241,7 @@ private struct CategoryGridCell: View {
             VStack(spacing: 6) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
-                        .fill(isSelected ? category.color : category.color.opacity(0.12))
+                        .fill(isSelected ? category.color : Theme.primaryLight.opacity(0.6))
                         .frame(width: 48, height: 48)
                     Image(systemName: category.icon)
                         .font(.system(size: 20, weight: .medium))
@@ -241,7 +250,7 @@ private struct CategoryGridCell: View {
                 Text(category.rawValue
                     .components(separatedBy: " ").first ?? category.rawValue)
                     .font(.system(size: 10, weight: .medium))
-                    .foregroundStyle(isSelected ? category.color : .secondary)
+                    .foregroundStyle(isSelected ? category.color : Theme.textSecondary)
                     .lineLimit(1)
             }
         }

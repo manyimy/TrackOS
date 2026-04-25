@@ -1,55 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 610" width="260" font-family="-apple-system, SF Pro Display, Helvetica Neue, sans-serif">
   <defs>
-    <clipPath id="rs-screen"><rect x="8" y="8" width="284" height="594" rx="38"/></clipPath>
+    <clipPath id="rs-clip"><rect x="8" y="8" width="284" height="594" rx="38"/></clipPath>
   </defs>
-  <!-- Phone shell -->
+
   <rect width="300" height="610" rx="44" fill="#1C1C1E"/>
-  <rect x="8" y="8" width="284" height="594" rx="38" fill="#F2F2F7" clip-path="url(#rs-screen)"/>
-  <!-- Dynamic Island -->
+  <rect x="8" y="8" width="284" height="594" rx="38" fill="#F0F7FF" clip-path="url(#rs-clip)"/>
   <rect x="105" y="18" width="90" height="28" rx="14" fill="#1C1C1E"/>
-  <text x="28" y="38" font-size="13" font-weight="600" fill="#1C1C1E">9:41</text>
+  <text x="28" y="38" font-size="13" font-weight="600" fill="#0F172A">9:41</text>
 
-  <!-- Nav title -->
-  <text x="150" y="82" font-size="18" font-weight="600" fill="#1C1C1E" text-anchor="middle">Scan Receipt</text>
+  <!-- Nav -->
+  <text x="150" y="82" font-size="18" font-weight="600" fill="#0F172A" text-anchor="middle">Scan Receipt</text>
 
-  <!-- Hero visual: concentric circles -->
-  <circle cx="150" cy="230" r="96" fill="#007AFF" fill-opacity="0.07" stroke="#007AFF" stroke-opacity="0.12" stroke-width="1"/>
-  <circle cx="150" cy="230" r="66" fill="#007AFF" fill-opacity="0.06"/>
+  <!-- Hero: concentric circles in pale blue -->
+  <circle cx="150" cy="238" r="94" fill="#DBEAFE" fill-opacity="0.45"/>
+  <circle cx="150" cy="238" r="64" fill="#DBEAFE"/>
 
-  <!-- Icon: viewfinder -->
-  <!-- Corners of viewfinder -->
-  <polyline points="118,198 118,186 130,186" stroke="#007AFF" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <polyline points="170,186 182,186 182,198" stroke="#007AFF" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <polyline points="118,262 118,274 130,274" stroke="#007AFF" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <polyline points="170,274 182,274 182,262" stroke="#007AFF" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Receipt lines inside -->
-  <line x1="133" y1="218" x2="167" y2="218" stroke="#007AFF" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.7"/>
-  <line x1="133" y1="230" x2="167" y2="230" stroke="#007AFF" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.7"/>
-  <line x1="133" y1="242" x2="155" y2="242" stroke="#007AFF" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.7"/>
+  <!-- Viewfinder corners -->
+  <polyline points="120,206 120,194 132,194" stroke="#2563EB" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="168,194 180,194 180,206" stroke="#2563EB" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="120,270 120,282 132,282" stroke="#2563EB" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="168,282 180,282 180,270" stroke="#2563EB" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Receipt lines -->
+  <line x1="135" y1="224" x2="165" y2="224" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.7"/>
+  <line x1="135" y1="238" x2="165" y2="238" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.7"/>
+  <line x1="135" y1="252" x2="155" y2="252" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.7"/>
 
-  <!-- Heading -->
-  <text x="150" y="310" font-size="20" font-weight="700" fill="#1C1C1E" text-anchor="middle">Scan a Receipt</text>
-  <text x="150" y="332" font-size="13" fill="#8E8E93" text-anchor="middle">Pick a photo — Vision OCR will extract</text>
-  <text x="150" y="348" font-size="13" fill="#8E8E93" text-anchor="middle">merchant, amount and date.</text>
+  <!-- Text -->
+  <text x="150" y="318" font-size="20" font-weight="700" fill="#0F172A" text-anchor="middle">Scan a Receipt</text>
+  <text x="150" y="340" font-size="12" fill="#64748B" text-anchor="middle">Pick a photo — Vision OCR will extract</text>
+  <text x="150" y="356" font-size="12" fill="#64748B" text-anchor="middle">merchant, amount and date.</text>
 
-  <!-- Choose from Library button -->
-  <rect x="32" y="370" width="236" height="50" rx="16" fill="#007AFF" filter="drop-shadow(0 5px 10px rgba(0,122,255,0.3))"/>
-  <text x="150" y="400" font-size="14" font-weight="600" fill="white" text-anchor="middle">Choose from Library</text>
+  <!-- CTA button -->
+  <rect x="32" y="378" width="236" height="48" rx="16" fill="#2563EB" filter="drop-shadow(0 5px 10px rgba(37,99,235,0.32))"/>
+  <text x="150" y="407" font-size="14" font-weight="600" fill="white" text-anchor="middle">Choose from Library</text>
 
-  <!-- Tip footer -->
-  <rect x="16" y="450" width="268" height="36" rx="12" fill="white"/>
-  <text x="30" y="473" font-size="12" fill="#FFD60A">💡</text>
-  <text x="48" y="473" font-size="11" fill="#8E8E93">Flat receipts in good lighting work best</text>
+  <!-- Tip card -->
+  <rect x="20" y="448" width="260" height="36" rx="12" fill="white"/>
+  <text x="34" y="470" font-size="12" fill="#F59E0B">💡</text>
+  <text x="52" y="470" font-size="10" fill="#64748B">Flat receipts in good lighting work best</text>
 
   <!-- Tab Bar -->
-  <rect x="8" y="562" width="284" height="40" fill="white" fill-opacity="0.95"/>
-  <line x1="8" y1="562" x2="292" y2="562" stroke="#E5E5EA" stroke-width="0.5"/>
-  <text x="54" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">◼</text>
-  <text x="54" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Dashboard</text>
-  <text x="114" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">≡</text>
-  <text x="114" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Expenses</text>
-  <text x="174" y="577" font-size="10" fill="#007AFF" text-anchor="middle">⬚</text>
-  <text x="174" y="589" font-size="9" fill="#007AFF" text-anchor="middle" font-weight="600">Scanner</text>
-  <text x="234" y="577" font-size="10" fill="#8E8E93" text-anchor="middle">🔔</text>
-  <text x="234" y="589" font-size="9" fill="#8E8E93" text-anchor="middle">Inbox</text>
+  <rect x="8" y="562" width="284" height="40" fill="white"/>
+  <line x1="8" y1="562" x2="292" y2="562" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="54" y="577" font-size="10" fill="#94A3B8" text-anchor="middle">◼</text>
+  <text x="54" y="589" font-size="9" fill="#94A3B8" text-anchor="middle">Dashboard</text>
+  <text x="114" y="577" font-size="10" fill="#94A3B8" text-anchor="middle">≡</text>
+  <text x="114" y="589" font-size="9" fill="#94A3B8" text-anchor="middle">Expenses</text>
+  <text x="174" y="577" font-size="10" fill="#2563EB" text-anchor="middle">⬚</text>
+  <text x="174" y="589" font-size="9" fill="#2563EB" text-anchor="middle" font-weight="600">Scanner</text>
+  <text x="234" y="577" font-size="10" fill="#94A3B8" text-anchor="middle">🔔</text>
+  <text x="234" y="589" font-size="9" fill="#94A3B8" text-anchor="middle">Inbox</text>
 </svg>
