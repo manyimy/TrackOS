@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 610" width="260">
+  <defs>
+    <clipPath id="el-screen"><rect x="8" y="8" width="284" height="594" rx="42"/></clipPath>
+  </defs>
+
+  <!-- Phone body -->
+  <rect x="1" y="1" width="298" height="608" rx="48" fill="#1C1C1E"/>
+  <rect x="0" y="148" width="2" height="32" rx="1" fill="#2C2C2E"/>
+  <rect x="0" y="196" width="2" height="52" rx="1" fill="#2C2C2E"/>
+  <rect x="0" y="258" width="2" height="52" rx="1" fill="#2C2C2E"/>
+  <rect x="298" y="178" width="2" height="72" rx="1" fill="#2C2C2E"/>
+
+  <g clip-path="url(#el-screen)">
+    <rect x="8" y="8" width="284" height="594" fill="#F2F2F7"/>
+
+    <!-- Status bar -->
+    <rect x="8" y="8" width="284" height="46" fill="white"/>
+    <rect x="110" y="13" width="80" height="28" rx="14" fill="#1C1C1E"/>
+    <text x="26" y="34" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="600" fill="#000">9:41</text>
+    <rect x="246" y="23" width="26" height="12" rx="3" fill="none" stroke="#000" stroke-width="1.2" opacity="0.6"/>
+    <rect x="272" y="26" width="2" height="6" rx="1" fill="#000" opacity="0.4"/>
+    <rect x="247" y="24" width="19" height="10" rx="2" fill="#34C759"/>
+    <rect x="226" y="30" width="3" height="6" rx="1" fill="#000" opacity="0.7"/>
+    <rect x="232" y="27" width="3" height="9" rx="1" fill="#000" opacity="0.7"/>
+    <rect x="238" y="24" width="3" height="12" rx="1" fill="#000" opacity="0.7"/>
+
+    <!-- Nav bar -->
+    <rect x="8" y="54" width="284" height="82" fill="white"/>
+    <text x="22" y="114" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="30" font-weight="700" fill="#000">Expenses</text>
+    <circle cx="266" cy="98" r="13" fill="#F2F2F7"/>
+    <text x="260" y="103" font-family="-apple-system,sans-serif" font-size="13" font-weight="500" fill="#007AFF">Edit</text>
+
+    <!-- Search bar -->
+    <rect x="8" y="136" width="284" height="56" fill="white"/>
+    <rect x="18" y="144" width="264" height="36" rx="10" fill="#F2F2F7"/>
+    <text x="150" y="166" font-family="-apple-system,sans-serif" font-size="13" fill="#8E8E93" text-anchor="middle">🔍 Search expenses</text>
+
+    <!-- Filter chips -->
+    <rect x="8" y="192" width="284" height="42" fill="white"/>
+    <rect x="17" y="200" width="28" height="24" rx="12" fill="#007AFF"/>
+    <text x="31" y="216" font-family="-apple-system,sans-serif" font-size="11" font-weight="600" fill="white" text-anchor="middle">All</text>
+    <rect x="50" y="200" width="38" height="24" rx="12" fill="#F2F2F7"/>
+    <text x="69" y="216" font-family="-apple-system,sans-serif" font-size="11" fill="#374151" text-anchor="middle">Food</text>
+    <rect x="93" y="200" width="58" height="24" rx="12" fill="#F2F2F7"/>
+    <text x="122" y="216" font-family="-apple-system,sans-serif" font-size="11" fill="#374151" text-anchor="middle">Transport</text>
+    <rect x="156" y="200" width="54" height="24" rx="12" fill="#F2F2F7"/>
+    <text x="183" y="216" font-family="-apple-system,sans-serif" font-size="11" fill="#374151" text-anchor="middle">Shopping</text>
+    <rect x="215" y="200" width="60" height="24" rx="12" fill="#F2F2F7"/>
+    <text x="245" y="216" font-family="-apple-system,sans-serif" font-size="11" fill="#374151" text-anchor="middle">Groceries</text>
+
+    <!-- List -->
+    <rect x="8" y="234" width="284" height="282" fill="white"/>
+
+    <!-- Row 1: Starbucks -->
+    <rect x="18" y="244" width="28" height="28" rx="8" fill="#FFF7ED"/>
+    <rect x="26" y="252" width="12" height="2" rx="1" fill="#F97316"/>
+    <rect x="30" y="246" width="4" height="10" rx="1" fill="#F97316"/>
+    <text x="54" y="257" font-family="-apple-system,sans-serif" font-size="14" font-weight="500" fill="#000">Starbucks</text>
+    <text x="54" y="270" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Apr 25 · Notification</text>
+    <text x="274" y="261" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="end">RM 18.00</text>
+    <line x1="18" y1="278" x2="282" y2="278" stroke="#F3F4F6" stroke-width="1"/>
+
+    <!-- Row 2: Grab -->
+    <rect x="18" y="284" width="28" height="28" rx="8" fill="#EFF6FF"/>
+    <rect x="21" y="292" width="22" height="11" rx="3" fill="#3B82F6"/>
+    <circle cx="26" cy="303" r="3" fill="#3B82F6"/>
+    <circle cx="38" cy="303" r="3" fill="#3B82F6"/>
+    <text x="54" y="297" font-family="-apple-system,sans-serif" font-size="14" font-weight="500" fill="#000">Grab</text>
+    <text x="54" y="310" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Apr 24 · Notification</text>
+    <text x="274" y="301" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="end">RM 12.50</text>
+    <line x1="18" y1="318" x2="282" y2="318" stroke="#F3F4F6" stroke-width="1"/>
+
+    <!-- Row 3: Shopee -->
+    <rect x="18" y="324" width="28" height="28" rx="8" fill="#F5F3FF"/>
+    <rect x="22" y="328" width="20" height="20" rx="4" fill="none" stroke="#8B5CF6" stroke-width="1.8"/>
+    <text x="54" y="337" font-family="-apple-system,sans-serif" font-size="14" font-weight="500" fill="#000">Shopee</text>
+    <text x="54" y="350" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Apr 23 · Manual</text>
+    <text x="274" y="341" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="end">RM 89.90</text>
+    <line x1="18" y1="358" x2="282" y2="358" stroke="#F3F4F6" stroke-width="1"/>
+
+    <!-- Row 4: Jaya Grocer -->
+    <rect x="18" y="364" width="28" height="28" rx="8" fill="#F0FDF4"/>
+    <rect x="21" y="368" width="22" height="18" rx="2" fill="none" stroke="#10B981" stroke-width="1.8"/>
+    <line x1="25" y1="368" x2="25" y2="374" stroke="#10B981" stroke-width="1.5"/>
+    <text x="54" y="377" font-family="-apple-system,sans-serif" font-size="14" font-weight="500" fill="#000">Jaya Grocer</text>
+    <text x="54" y="390" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Apr 22 · Receipt Scan</text>
+    <text x="274" y="381" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="end">RM 67.80</text>
+    <line x1="18" y1="398" x2="282" y2="398" stroke="#F3F4F6" stroke-width="1"/>
+
+    <!-- Row 5: Netflix -->
+    <rect x="18" y="404" width="28" height="28" rx="8" fill="#FFF1F2"/>
+    <rect x="21" y="408" width="10" height="20" rx="2" fill="#EF4444"/>
+    <rect x="36" y="408" width="10" height="20" rx="2" fill="#EF4444"/>
+    <rect x="25" y="416" width="17" height="4" fill="#EF4444"/>
+    <text x="54" y="417" font-family="-apple-system,sans-serif" font-size="14" font-weight="500" fill="#000">Netflix</text>
+    <text x="54" y="430" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Apr 20 · Notification</text>
+    <text x="274" y="421" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="end">RM 54.90</text>
+    <line x1="18" y1="438" x2="282" y2="438" stroke="#F3F4F6" stroke-width="1"/>
+
+    <!-- Row 6: TNB -->
+    <rect x="18" y="444" width="28" height="28" rx="8" fill="#FEFCE8"/>
+    <path d="M34 448 L28 460 L33 460 L28 472 L40 458 L34 458 Z" fill="#EAB308"/>
+    <text x="54" y="457" font-family="-apple-system,sans-serif" font-size="14" font-weight="500" fill="#000">TNB</text>
+    <text x="54" y="470" font-family="-apple-system,sans-serif" font-size="11" fill="#8E8E93">Apr 18 · Manual</text>
+    <text x="274" y="461" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="end">RM 120.00</text>
+
+    <!-- Tab bar -->
+    <rect x="8" y="516" width="284" height="86" fill="white"/>
+    <line x1="8" y1="516" x2="292" y2="516" stroke="#E5E5EA" stroke-width="0.5"/>
+    <!-- Dashboard -->
+    <circle cx="44" cy="535" r="5" fill="#8E8E93"/>
+    <text x="44" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Dashboard</text>
+    <!-- Expenses (active) -->
+    <circle cx="115" cy="535" r="12" fill="#EBF5FF"/>
+    <rect x="109" y="529" width="12" height="2" rx="1" fill="#007AFF"/>
+    <rect x="109" y="534" width="12" height="2" rx="1" fill="#007AFF"/>
+    <rect x="109" y="539" width="8" height="2" rx="1" fill="#007AFF"/>
+    <text x="115" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#007AFF" text-anchor="middle">Expenses</text>
+    <!-- Scan -->
+    <rect x="178" y="525" width="16" height="18" rx="4" fill="none" stroke="#8E8E93" stroke-width="1.5"/>
+    <rect x="181" y="529" width="10" height="2" rx="0.5" fill="#8E8E93"/>
+    <rect x="181" y="533" width="10" height="2" rx="0.5" fill="#8E8E93"/>
+    <rect x="181" y="537" width="6" height="2" rx="0.5" fill="#8E8E93"/>
+    <text x="186" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Scan</text>
+    <!-- Notifications -->
+    <path d="M249 526 C249 526 244 526 244 531 L244 537 L257 537 L257 531 C257 526 252 526 252 526 Z" fill="none" stroke="#8E8E93" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect x="247" y="537" width="9" height="2" rx="1" fill="#8E8E93"/>
+    <text x="251" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Notifications</text>
+
+    <!-- Home indicator -->
+    <rect x="112" y="591" width="76" height="4" rx="2" fill="#000" opacity="0.2"/>
+  </g>
+</svg>

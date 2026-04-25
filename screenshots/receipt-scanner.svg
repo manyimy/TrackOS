@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 610" width="260">
+  <defs>
+    <clipPath id="rs-screen"><rect x="8" y="8" width="284" height="594" rx="42"/></clipPath>
+  </defs>
+
+  <!-- Phone body -->
+  <rect x="1" y="1" width="298" height="608" rx="48" fill="#1C1C1E"/>
+  <rect x="0" y="148" width="2" height="32" rx="1" fill="#2C2C2E"/>
+  <rect x="0" y="196" width="2" height="52" rx="1" fill="#2C2C2E"/>
+  <rect x="0" y="258" width="2" height="52" rx="1" fill="#2C2C2E"/>
+  <rect x="298" y="178" width="2" height="72" rx="1" fill="#2C2C2E"/>
+
+  <g clip-path="url(#rs-screen)">
+    <rect x="8" y="8" width="284" height="594" fill="#F2F2F7"/>
+
+    <!-- Status bar -->
+    <rect x="8" y="8" width="284" height="46" fill="white"/>
+    <rect x="110" y="13" width="80" height="28" rx="14" fill="#1C1C1E"/>
+    <text x="26" y="34" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="13" font-weight="600" fill="#000">9:41</text>
+    <rect x="246" y="23" width="26" height="12" rx="3" fill="none" stroke="#000" stroke-width="1.2" opacity="0.6"/>
+    <rect x="272" y="26" width="2" height="6" rx="1" fill="#000" opacity="0.4"/>
+    <rect x="247" y="24" width="19" height="10" rx="2" fill="#34C759"/>
+    <rect x="226" y="30" width="3" height="6" rx="1" fill="#000" opacity="0.7"/>
+    <rect x="232" y="27" width="3" height="9" rx="1" fill="#000" opacity="0.7"/>
+    <rect x="238" y="24" width="3" height="12" rx="1" fill="#000" opacity="0.7"/>
+
+    <!-- Nav bar -->
+    <rect x="8" y="54" width="284" height="82" fill="white"/>
+    <text x="22" y="114" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="30" font-weight="700" fill="#000">Scan Receipt</text>
+
+    <!-- Content area -->
+    <rect x="8" y="136" width="284" height="380" fill="#F2F2F7"/>
+
+    <!-- Scanner icon area -->
+    <rect x="60" y="158" width="180" height="180" rx="24" fill="white"/>
+    <!-- Corner brackets -->
+    <path d="M78 176 L78 168 L86 168" fill="none" stroke="#007AFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M214 168 L222 168 L222 176" fill="none" stroke="#007AFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M78 320 L78 328 L86 328" fill="none" stroke="#007AFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M214 320 L222 320 L222 328" fill="none" stroke="#007AFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Document icon inside -->
+    <rect x="120" y="210" width="60" height="76" rx="6" fill="#EBF5FF"/>
+    <rect x="158" y="210" width="22" height="22" rx="0" fill="#EBF5FF"/>
+    <path d="M158 210 L180 232" fill="none" stroke="white" stroke-width="1.5"/>
+    <path d="M158 210 L158 232 L180 232" fill="#BFDBFE"/>
+    <rect x="127" y="250" width="46" height="3" rx="1.5" fill="#93C5FD"/>
+    <rect x="127" y="258" width="38" height="3" rx="1.5" fill="#93C5FD"/>
+    <rect x="127" y="266" width="42" height="3" rx="1.5" fill="#93C5FD"/>
+    <!-- Scan line animation indicator -->
+    <line x1="68" y1="248" x2="232" y2="248" stroke="#007AFF" stroke-width="1.5" opacity="0.4" stroke-dasharray="6,4"/>
+
+    <!-- Heading -->
+    <text x="150" y="362" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="20" font-weight="600" fill="#000" text-anchor="middle">Scan a Receipt</text>
+    <text x="150" y="382" font-family="-apple-system,sans-serif" font-size="13" fill="#8E8E93" text-anchor="middle">Choose a photo to extract</text>
+    <text x="150" y="397" font-family="-apple-system,sans-serif" font-size="13" fill="#8E8E93" text-anchor="middle">merchant, amount &amp; date.</text>
+
+    <!-- Choose from Library button -->
+    <rect x="26" y="414" width="248" height="50" rx="14" fill="#007AFF"/>
+    <text x="150" y="445" font-family="-apple-system,BlinkMacSystemFont,sans-serif" font-size="16" font-weight="600" fill="white" text-anchor="middle">Choose from Library</text>
+
+    <!-- Tab bar -->
+    <rect x="8" y="516" width="284" height="86" fill="white"/>
+    <line x1="8" y1="516" x2="292" y2="516" stroke="#E5E5EA" stroke-width="0.5"/>
+    <!-- Dashboard -->
+    <circle cx="44" cy="535" r="5" fill="#8E8E93"/>
+    <text x="44" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Dashboard</text>
+    <!-- Expenses -->
+    <rect x="107" y="526" width="16" height="2" rx="1" fill="#8E8E93"/>
+    <rect x="107" y="531" width="16" height="2" rx="1" fill="#8E8E93"/>
+    <rect x="107" y="536" width="10" height="2" rx="1" fill="#8E8E93"/>
+    <text x="115" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Expenses</text>
+    <!-- Scan (active) -->
+    <circle cx="186" cy="535" r="12" fill="#EBF5FF"/>
+    <rect x="179" y="525" width="16" height="18" rx="4" fill="none" stroke="#007AFF" stroke-width="1.5"/>
+    <rect x="182" y="529" width="10" height="2" rx="0.5" fill="#007AFF"/>
+    <rect x="182" y="533" width="10" height="2" rx="0.5" fill="#007AFF"/>
+    <rect x="182" y="537" width="6" height="2" rx="0.5" fill="#007AFF"/>
+    <text x="186" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#007AFF" text-anchor="middle">Scan</text>
+    <!-- Notifications -->
+    <path d="M249 526 C249 526 244 526 244 531 L244 537 L257 537 L257 531 C257 526 252 526 252 526 Z" fill="none" stroke="#8E8E93" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect x="247" y="537" width="9" height="2" rx="1" fill="#8E8E93"/>
+    <text x="251" y="557" font-family="-apple-system,sans-serif" font-size="10" fill="#8E8E93" text-anchor="middle">Notifications</text>
+
+    <!-- Home indicator -->
+    <rect x="112" y="591" width="76" height="4" rx="2" fill="#000" opacity="0.2"/>
+  </g>
+</svg>

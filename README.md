@@ -2,6 +2,29 @@
 
 An iOS expense tracker that captures spending automatically from financial notifications and receipt images.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/dashboard.svg" width="200" alt="Dashboard"/>
+      <br/><sub><b>Dashboard</b></sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/expense-list.svg" width="200" alt="Expense List"/>
+      <br/><sub><b>Expense List</b></sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/receipt-scanner.svg" width="200" alt="Receipt Scanner"/>
+      <br/><sub><b>Receipt Scanner</b></sub>
+    </td>
+    <td align="center">
+      <img src="screenshots/notification-review.svg" width="200" alt="Notification Review"/>
+      <br/><sub><b>Notification Review</b></sub>
+    </td>
+  </tr>
+</table>
+
 ## Features
 
 - **Notification Parsing** — financial push notifications are parsed for amount, merchant, and category. A manual paste flow and iOS Shortcuts URL scheme (`trackos://expense?text=…`) are also supported.
