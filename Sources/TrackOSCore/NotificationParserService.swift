@@ -29,8 +29,13 @@ final class NotificationParserService {
     private func extractAmount(from text: String) -> (Double, String)? {
         // Symbol-based patterns — ordered by specificity (multi-char symbols first)
         let symbolPatterns: [(pattern: String, currency: String)] = [
-            // RM must come before bare $ to avoid partial matches
+            // Multi-char $ prefixes must come before bare $ to avoid partial matches
             ("RM\\s?([\\d,]+\\.?\\d{0,2})", "MYR"),
+            ("RMB\\s?([\\d,]+\\.?\\d{0,2})", "CNY"),
+            ("S\\$([\\d,]+\\.?\\d{0,2})", "SGD"),
+            ("HK\\$([\\d,]+\\.?\\d{0,2})", "HKD"),
+            ("A\\$([\\d,]+\\.?\\d{0,2})", "AUD"),
+            ("C\\$([\\d,]+\\.?\\d{0,2})", "CAD"),
             ("\\$([\\d,]+\\.?\\d{0,2})", "USD"),
             ("€([\\d,]+\\.?\\d{0,2})", "EUR"),
             ("£([\\d,]+\\.?\\d{0,2})", "GBP"),
@@ -39,12 +44,6 @@ final class NotificationParserService {
             ("₹([\\d,]+\\.?\\d{0,2})", "INR"),
             ("₩([\\d,]+)", "KRW"),
             ("฿([\\d,]+\\.?\\d{0,2})", "THB"),
-            ("S\\$([\\d,]+\\.?\\d{0,2})", "SGD"),
-            ("HK\\$([\\d,]+\\.?\\d{0,2})", "HKD"),
-            ("A\\$([\\d,]+\\.?\\d{0,2})", "AUD"),
-            ("C\\$([\\d,]+\\.?\\d{0,2})", "CAD"),
-            // RMB text marker for CNY
-            ("RMB\\s?([\\d,]+\\.?\\d{0,2})", "CNY"),
         ]
 
         for (pattern, currency) in symbolPatterns {
