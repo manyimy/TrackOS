@@ -1,6 +1,8 @@
 import SwiftUI
 import SwiftData
+#if canImport(UIKit)
 import UIKit
+#endif
 
 struct ExpenseListView: View {
     @Environment(\.modelContext) private var modelContext
@@ -235,6 +237,7 @@ struct ExpenseDetailView: View {
                 }
             }
 
+#if canImport(UIKit)
             if let data = expense.receiptImageData, let image = UIImage(data: data) {
                 Section("Receipt") {
                     Image(uiImage: image)
@@ -242,6 +245,7 @@ struct ExpenseDetailView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }
+#endif
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)

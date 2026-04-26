@@ -1,5 +1,13 @@
-import Vision
+import Foundation
+#if canImport(UIKit)
 import UIKit
+#endif
+#if canImport(Vision)
+import Vision
+#endif
+
+// ReceiptData is Foundation-only so views can reference it on all platforms.
+// The OCR implementation requires UIKit + Vision (iOS/iPadOS only).
 
 final class ReceiptOCRService {
 
@@ -23,6 +31,7 @@ final class ReceiptOCRService {
         var errorDescription: String? { "The image could not be processed for text recognition." }
     }
 
+#if canImport(UIKit) && canImport(Vision)
     func recognizeText(in image: UIImage) async throws -> ReceiptData {
         guard let cgImage = image.cgImage else { throw OCRError.invalidImage }
 
@@ -48,6 +57,7 @@ final class ReceiptOCRService {
 
         return parseLines(lines)
     }
+#endif
 
     // MARK: - Field Extraction
 
@@ -64,7 +74,6 @@ final class ReceiptOCRService {
     }
 
     private func extractMerchant(from lines: [String]) -> String? {
-        // Merchant name is typically one of the first non-address, non-phone lines
         for line in lines.prefix(6) {
             let trimmed = line.trimmingCharacters(in: .whitespaces)
             guard trimmed.count > 2 else { continue }
@@ -72,19 +81,14 @@ final class ReceiptOCRService {
             if lowered.contains("receipt") || lowered.contains("invoice") || lowered.contains("tel:") {
                 continue
             }
-            // Skip lines that are mostly digits (phone numbers, addresses)
             let letterRatio = Double(trimmed.filter { $0.isLetter }.count) / Double(trimmed.count)
-            if letterRatio > 0.5 {
-                return trimmed
-            }
+            if letterRatio > 0.5 { return trimmed }
         }
         return nil
     }
 
     private func extractTotal(from lines: [String]) -> (Double?, String) {
         let totalKeywords = ["total", "amount due", "grand total", "balance due", "charge", "subtotal"]
-
-        // Prefer lines that contain "total" keywords, scanning from bottom up
         for line in lines.reversed() {
             let lowered = line.lowercased()
             if totalKeywords.contains(where: { lowered.contains($0) }),
@@ -92,14 +96,11 @@ final class ReceiptOCRService {
                 return (amount, currency)
             }
         }
-
-        // Fall back to the largest amount found anywhere
         var max: Double = 0
         var currency = "MYR"
         for line in lines {
             if let (amount, curr) = extractAmountFromLine(line), amount > max {
-                max = amount
-                currency = curr
+                max = amount; currency = curr
             }
         }
         return max > 0 ? (max, currency) : (nil, "MYR")
@@ -107,14 +108,12 @@ final class ReceiptOCRService {
 
     func extractAmountFromLine(_ line: String) -> (Double, String)? {
         let patterns: [(String, String)] = [
-            // Multi-char symbols first to avoid partial matches
             ("RM\\s?([\\d,]+\\.\\d{2})", "MYR"),
             ("S\\$([\\d,]+\\.\\d{2})", "SGD"),
             ("HK\\$([\\d,]+\\.\\d{2})", "HKD"),
             ("A\\$([\\d,]+\\.\\d{2})", "AUD"),
             ("C\\$([\\d,]+\\.\\d{2})", "CAD"),
             ("RMB\\s?([\\d,]+\\.?\\d{0,2})", "CNY"),
-            // Single-char symbols
             ("\\$([\\d,]+\\.\\d{2})", "USD"),
             ("€([\\d,]+\\.\\d{2})", "EUR"),
             ("£([\\d,]+\\.\\d{2})", "GBP"),
@@ -142,7 +141,6 @@ final class ReceiptOCRService {
         let formats = ["MM/dd/yyyy", "MM-dd-yyyy", "dd/MM/yyyy", "MMM dd, yyyy", "MMMM dd, yyyy",
                        "MM/dd/yy", "dd-MM-yyyy"]
         let formatter = DateFormatter()
-
         for line in lines {
             for pattern in patterns {
                 guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive),

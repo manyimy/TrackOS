@@ -1,5 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
 import UIKit
+#endif
 
 struct ReceiptScannerView: View {
     @StateObject private var viewModel = ReceiptScannerViewModel()
@@ -22,9 +24,13 @@ struct ReceiptScannerView: View {
             .navigationTitle("Scan Receipt")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $viewModel.showImagePicker) {
+#if canImport(UIKit)
                 PhotoLibraryPicker { image in
                     Task { await viewModel.processImage(image) }
                 }
+#else
+                EmptyView()
+#endif
             }
         }
     }
@@ -260,8 +266,9 @@ struct ReceiptReviewView: View {
     }
 }
 
-// MARK: - Photo Picker
+// MARK: - Photo Picker (iOS only)
 
+#if canImport(UIKit)
 struct PhotoLibraryPicker: UIViewControllerRepresentable {
     let onImageSelected: (UIImage) -> Void
     @Environment(\.dismiss) private var dismiss
@@ -292,3 +299,4 @@ struct PhotoLibraryPicker: UIViewControllerRepresentable {
         }
     }
 }
+#endif
