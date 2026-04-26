@@ -2,6 +2,7 @@
 import SwiftUI
 import SwiftData
 import Charts
+import TrackOSCore
 
 struct DashboardView: View {
     @Query(sort: \Expense.date, order: .reverse) private var expenses: [Expense]

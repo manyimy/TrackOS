@@ -1,6 +1,7 @@
 #if os(iOS)
 import SwiftUI
 import SwiftData
+import TrackOSCore
 
 struct AddExpenseView: View {
     @Environment(\.modelContext) private var modelContext

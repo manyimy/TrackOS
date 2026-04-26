@@ -1,6 +1,7 @@
 #if os(iOS)
 import Foundation
 import SwiftData
+import TrackOSCore
 
 @Model
 final class Expense {

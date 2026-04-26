@@ -2,6 +2,7 @@
 import Foundation
 import UserNotifications
 import Combine
+import TrackOSCore
 
 @MainActor
 final class NotificationMonitorService: NSObject, ObservableObject {

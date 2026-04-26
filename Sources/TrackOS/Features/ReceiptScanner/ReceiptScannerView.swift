@@ -1,5 +1,6 @@
 #if os(iOS)
 import SwiftUI
+import TrackOSCore
 #if canImport(UIKit)
 import UIKit
 #endif
