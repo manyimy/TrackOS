@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 import SwiftData
 
@@ -302,3 +303,4 @@ struct PasteNotificationView: View {
         }
     }
 }
+#endif

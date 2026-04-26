@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 import TrackOSCore
 
@@ -18,3 +19,4 @@ extension ExpenseCategory {
         }
     }
 }
+#endif

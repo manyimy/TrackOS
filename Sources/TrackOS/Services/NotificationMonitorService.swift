@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 import UserNotifications
 import Combine
@@ -76,3 +77,4 @@ extension NotificationMonitorService: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
+#endif

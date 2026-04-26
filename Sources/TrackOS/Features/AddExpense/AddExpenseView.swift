@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 import SwiftData
 
@@ -257,3 +258,4 @@ private struct CategoryGridCell: View {
         .buttonStyle(.plain)
     }
 }
+#endif

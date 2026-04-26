@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 #if canImport(UIKit)
 import UIKit
@@ -30,3 +31,4 @@ final class ReceiptScannerViewModel: ObservableObject {
         errorMessage = nil
     }
 }
+#endif

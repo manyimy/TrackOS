@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 import SwiftData
 
@@ -26,3 +27,4 @@ struct TrackOSApp: App {
         .modelContainer(sharedModelContainer)
     }
 }
+#endif

@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 import SwiftData
 #if canImport(UIKit)
@@ -294,3 +295,4 @@ struct CategoryChip: View {
         .buttonStyle(.plain)
     }
 }
+#endif

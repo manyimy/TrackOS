@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 
 enum TimePeriod: String, CaseIterable {
@@ -85,3 +86,4 @@ final class DashboardViewModel: ObservableObject {
         return buckets.sorted { $0.key > $1.key }.map { ($0.label, $0.items) }
     }
 }
+#endif

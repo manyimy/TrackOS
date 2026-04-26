@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 import SwiftData
 
@@ -52,3 +53,4 @@ final class Expense {
         return formatter.string(from: NSNumber(value: amount)) ?? "\(currency) \(amount)"
     }
 }
+#endif

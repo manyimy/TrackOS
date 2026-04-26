@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 import SwiftData
 import Charts
@@ -277,3 +278,4 @@ struct DashboardView: View {
         .padding(.bottom, 96)
     }
 }
+#endif

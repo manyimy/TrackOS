@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 
 extension Date {
@@ -17,3 +18,4 @@ extension Collection {
         indices.contains(index) ? self[index] : nil
     }
 }
+#endif

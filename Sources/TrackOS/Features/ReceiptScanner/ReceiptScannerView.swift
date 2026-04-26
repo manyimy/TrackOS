@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 #if canImport(UIKit)
 import UIKit
@@ -299,4 +300,5 @@ struct PhotoLibraryPicker: UIViewControllerRepresentable {
         }
     }
 }
+#endif
 #endif

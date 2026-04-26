@@ -1,3 +1,4 @@
+#if os(iOS)
 import SwiftUI
 
 enum Theme {
@@ -21,3 +22,4 @@ enum Theme {
     static let border        = Color(red: 226/255, green: 232/255, blue: 240/255) // #E2E8F0
     static let fill          = Color(red: 241/255, green: 245/255, blue: 249/255) // #F1F5F9
 }
+#endif

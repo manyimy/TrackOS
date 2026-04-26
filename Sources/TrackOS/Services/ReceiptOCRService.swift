@@ -1,3 +1,4 @@
+#if os(iOS)
 import Foundation
 #if canImport(UIKit)
 import UIKit
@@ -168,3 +169,4 @@ final class ReceiptOCRService {
         }
     }
 }
+#endif
