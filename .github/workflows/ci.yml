@@ -24,8 +24,11 @@ jobs:
       - name: Build TrackOSCore
         run: swift build --target TrackOSCore
 
-      - name: Run TrackOSTests
-        run: swift test --filter TrackOSTests
+      - name: Build TrackOSTests (deps only — avoids compiling iOS-only TrackOS target)
+        run: swift build --target TrackOSTests
+
+      - name: Run unit tests
+        run: xcrun xctest .build/debug/TrackOSPackageTests.xctest
 
   # ── iOS compilation check (catches SwiftUI / SwiftData errors) ──────────────
   build-ios:

@@ -5,7 +5,7 @@ let package = Package(
     name: "TrackOS",
     platforms: [
         .iOS(.v17),
-        .macOS(.v13),   // allows TrackOSCore + tests to build on macOS / CI
+        .macOS(.v14),   // SwiftData requires macOS 14+; TrackOSCore + tests run on macOS CI
     ],
     products: [
         .library(name: "TrackOSCore", targets: ["TrackOSCore"]),
