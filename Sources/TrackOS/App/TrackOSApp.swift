@@ -2,7 +2,8 @@
 import SwiftUI
 import SwiftData
 
-@main
+// @main is intentionally omitted: this target builds as a library (framework)
+// for CI. Add @main back when embedding these sources in an Xcode app target.
 struct TrackOSApp: App {
     @StateObject private var notificationMonitor = NotificationMonitorService()
 
