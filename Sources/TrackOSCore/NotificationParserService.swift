@@ -115,6 +115,7 @@ final class NotificationParserService {
             (.groceries, [
                 // Global
                 "grocery", "groceries", "supermarket", "walmart", "costco", "aldi",
+                "trader joe", "whole foods", "kroger", "publix", "safeway", "target",
                 // Malaysia
                 "jaya grocer", "village grocer", "cold storage", "giant", "tesco", "aeon",
                 "mydin", "99 speedmart", "mercato", "ben's independent",
