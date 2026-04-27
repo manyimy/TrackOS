@@ -41,8 +41,10 @@ jobs:
 
       - name: Build TrackOS for Mac Catalyst
         run: |
+          set -o pipefail
           xcodebuild build \
             -scheme TrackOS \
             -destination 'platform=macOS,variant=Mac Catalyst' \
             CODE_SIGNING_ALLOWED=NO \
-            SWIFT_TREAT_WARNINGS_AS_ERRORS=NO
+            SWIFT_TREAT_WARNINGS_AS_ERRORS=NO \
+            2>&1 | xcpretty --color

@@ -26,7 +26,7 @@ struct ReceiptScannerView: View {
             .navigationTitle("Scan Receipt")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $viewModel.showImagePicker) {
-#if canImport(UIKit)
+#if canImport(UIKit) && !targetEnvironment(macCatalyst)
                 PhotoLibraryPicker { image in
                     Task { await viewModel.processImage(image) }
                 }
@@ -268,9 +268,9 @@ struct ReceiptReviewView: View {
     }
 }
 
-// MARK: - Photo Picker (iOS only)
+// MARK: - Photo Picker (iOS only, unavailable on Mac Catalyst)
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !targetEnvironment(macCatalyst)
 struct PhotoLibraryPicker: UIViewControllerRepresentable {
     let onImageSelected: (UIImage) -> Void
     @Environment(\.dismiss) private var dismiss
