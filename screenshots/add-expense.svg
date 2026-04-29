@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <!-- Phone body -->
+  <rect width="390" height="844" rx="44" fill="#0A0A0B"/>
+  <rect x="1" y="1" width="388" height="842" rx="43" fill="none" stroke="#26262C" stroke-width="1.5"/>
+
+  <!-- Status bar -->
+  <text x="32" y="56" font-family="-apple-system,sans-serif" font-size="15" font-weight="600" fill="#FAFAFA">9:41</text>
+  <rect x="148" y="12" width="94" height="34" rx="17" fill="#0A0A0B"/>
+  <text x="330" y="56" font-family="-apple-system,sans-serif" font-size="13" fill="#FAFAFA">●●●</text>
+
+  <!-- Sheet drag handle -->
+  <rect x="177" y="76" width="36" height="4" rx="2" fill="#26262C"/>
+
+  <!-- Navigation bar -->
+  <text x="24" y="116" font-family="-apple-system,sans-serif" font-size="15" fill="#A1A1AA">Cancel</text>
+  <text x="195" y="116" font-family="-apple-system,sans-serif" font-size="17" font-weight="600" fill="#FAFAFA" text-anchor="middle">Add Expense</text>
+  <text x="366" y="116" font-family="-apple-system,sans-serif" font-size="15" font-weight="600" fill="#B6FF3D" text-anchor="end">Save</text>
+  <line x1="0" y1="128" x2="390" y2="128" stroke="#26262C" stroke-width="0.5"/>
+
+  <!-- Amount section -->
+  <text x="24" y="160" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#A1A1AA" letter-spacing="0.5">AMOUNT</text>
+
+  <!-- Currency button -->
+  <rect x="24" y="170" width="44" height="44" rx="12" fill="#111114" stroke="#26262C" stroke-width="1"/>
+  <text x="46" y="197" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#FAFAFA" text-anchor="middle">RM</text>
+
+  <!-- Amount input -->
+  <text x="82" y="206" font-family="-apple-system,sans-serif" font-size="40" font-weight="900" fill="#FAFAFA" letter-spacing="-1">42.90</text>
+  <!-- Cursor -->
+  <rect x="240" y="174" width="2" height="36" rx="1" fill="#B6FF3D"/>
+
+  <!-- Merchant section -->
+  <text x="24" y="248" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#A1A1AA" letter-spacing="0.5">MERCHANT</text>
+  <rect x="24" y="256" width="342" height="48" rx="12" fill="#111114" stroke="#26262C" stroke-width="1"/>
+  <text x="44" y="284" font-family="-apple-system,sans-serif" font-size="15" fill="#FAFAFA">Starbucks</text>
+
+  <!-- Date section -->
+  <text x="24" y="328" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#A1A1AA" letter-spacing="0.5">DATE</text>
+  <rect x="24" y="336" width="342" height="48" rx="12" fill="#111114" stroke="#26262C" stroke-width="1"/>
+  <text x="44" y="364" font-family="-apple-system,sans-serif" font-size="15" fill="#FAFAFA">29 Apr 2026</text>
+  <text x="350" y="364" font-family="-apple-system,sans-serif" font-size="14" fill="#A1A1AA" text-anchor="end">9:41 AM</text>
+
+  <!-- Category section -->
+  <text x="24" y="408" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#A1A1AA" letter-spacing="0.5">CATEGORY</text>
+
+  <!-- Category chips -->
+  <!-- Food chip (selected) -->
+  <rect x="24" y="416" width="118" height="34" rx="17" fill="#B6FF3D"/>
+  <circle cx="50" cy="433" r="10" fill="#FF9500" opacity="0.3"/>
+  <text x="50" y="438" font-family="-apple-system,sans-serif" font-size="11" fill="#FF9500" text-anchor="middle">🍔</text>
+  <text x="110" y="438" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#0A0A0B" text-anchor="middle">Food &amp; Dining</text>
+
+  <!-- Transport chip -->
+  <rect x="150" y="416" width="100" height="34" rx="17" fill="#18181D" stroke="#26262C" stroke-width="1"/>
+  <text x="166" y="438" font-family="-apple-system,sans-serif" font-size="11" fill="#007AFF" text-anchor="middle">🚗</text>
+  <text x="225" y="438" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#A1A1AA" text-anchor="middle">Transport</text>
+
+  <!-- Shopping chip -->
+  <rect x="258" y="416" width="90" height="34" rx="17" fill="#18181D" stroke="#26262C" stroke-width="1"/>
+  <text x="274" y="438" font-family="-apple-system,sans-serif" font-size="11" fill="#AF52DE" text-anchor="middle">🛍</text>
+  <text x="320" y="438" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#A1A1AA" text-anchor="middle">Shopping</text>
+
+  <!-- Note section -->
+  <text x="24" y="480" font-family="-apple-system,sans-serif" font-size="12" font-weight="500" fill="#A1A1AA" letter-spacing="0.5">NOTE (OPTIONAL)</text>
+  <rect x="24" y="488" width="342" height="48" rx="12" fill="#111114" stroke="#26262C" stroke-width="1"/>
+  <text x="44" y="516" font-family="-apple-system,sans-serif" font-size="15" fill="#6B6B73">Add a note…</text>
+
+  <!-- Keyboard (simplified) -->
+  <rect x="0" y="558" width="390" height="286" rx="0" fill="#1C1C1E"/>
+  <!-- Number row -->
+  <text x="39" y="598" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">1</text>
+  <text x="117" y="598" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">2</text>
+  <text x="195" y="598" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">3</text>
+  <text x="273" y="598" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">4</text>
+  <text x="351" y="598" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">5</text>
+  <text x="39" y="658" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">6</text>
+  <text x="117" y="658" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">7</text>
+  <text x="195" y="658" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">8</text>
+  <text x="273" y="658" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">9</text>
+  <text x="351" y="658" font-family="-apple-system,sans-serif" font-size="20" font-weight="300" fill="#FAFAFA" text-anchor="middle">0</text>
+  <!-- Bottom row -->
+  <text x="39" y="718" font-family="-apple-system,sans-serif" font-size="14" fill="#FAFAFA" text-anchor="middle">.</text>
+  <rect x="272" y="696" width="118" height="40" rx="8" fill="#B6FF3D"/>
+  <text x="331" y="720" font-family="-apple-system,sans-serif" font-size="14" font-weight="600" fill="#0A0A0B" text-anchor="middle">return</text>
+
+  <rect x="155" y="832" width="80" height="5" rx="2.5" fill="#FAFAFA" opacity="0.3"/>
+</svg>
