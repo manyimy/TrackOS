@@ -7,7 +7,7 @@ on:
     branches: ["**"]
 
 jobs:
-  # ── Unit tests (Foundation-only, no simulator needed) ───────────────────────
+  # ── Unit tests (Domain + Persistence + FeatureAddExpense) ───────────────────
   test:
     name: Unit Tests
     runs-on: macos-15
@@ -21,8 +21,14 @@ jobs:
       - name: Swift version
         run: swift --version
 
-      - name: Run unit tests
-        run: swift test --filter TrackOSTests
+      - name: Run Domain tests
+        run: swift test --filter DomainTests
+
+      - name: Run FeatureAddExpense tests
+        run: swift test --filter FeatureAddExpenseTests
+
+      - name: Run Persistence tests
+        run: swift test --filter PersistenceTests
 
   # ── iOS compilation check (catches SwiftUI / SwiftData errors) ──────────────
   # Mac Catalyst is used because the iOS platform SDK is not pre-installed on
@@ -39,7 +45,7 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-      - name: Build TrackOS for Mac Catalyst
+      - name: Build all SPM targets for Mac Catalyst
         run: |
           set -o pipefail
           xcodebuild build \
