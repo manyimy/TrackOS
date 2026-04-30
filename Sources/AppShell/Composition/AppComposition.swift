@@ -31,7 +31,7 @@ public final class AppComposition {
         classifier      = clf
         expenseService  = ExpenseService(repo: expenseRepo, fx: fx, classifier: clf)
         categoryService = CategoryService(repo: categoryRepo)
-        budgetService   = BudgetService(repo: budgetRepo, expenseRepo: expenseRepo)
+        budgetService   = BudgetService(budgetRepo: budgetRepo, expenseRepo: expenseRepo)
         insightEngine   = InsightEngine(expenseRepo: expenseRepo, budgetRepo: budgetRepo)
 
         Task { @MainActor [weak self] in

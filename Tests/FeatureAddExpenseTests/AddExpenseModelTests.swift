@@ -4,6 +4,7 @@ import Foundation
 @testable import Domain
 
 @Suite("AddExpenseModel")
+@MainActor
 struct AddExpenseModelTests {
 
     // MARK: - Helpers
