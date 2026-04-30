@@ -24,7 +24,7 @@ public struct DashboardView: View {
                         .background(theme.color.bg)
                 }
             }
-            .navigationBarHidden(true)
+            .toolbar(.hidden, for: .navigationBar)
         }
         .task {
             let m = DashboardModel(expenseService: expenseService, budgetService: budgetService)

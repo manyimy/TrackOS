@@ -17,11 +17,11 @@ public final class BudgetsModel {
     }
 
     public var totalBudgeted: Decimal {
-        budgets.reduce(.zero) { $0 + $1.limitAmount }
+        budgets.reduce(.zero) { $0 + $1.limit }
     }
 
     public var totalSpent: Decimal {
-        budgets.reduce(.zero) { $0 + $1.spentAmount }
+        budgets.reduce(.zero) { $0 + $1.spent }
     }
 
     // MARK: - Dependencies

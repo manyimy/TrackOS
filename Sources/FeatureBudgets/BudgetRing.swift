@@ -16,9 +16,9 @@ public struct BudgetRing: View {
         ZStack {
             ProgressRing(
                 progress: budget.percentUsed,
-                color: ringColor,
+                size: size,
                 lineWidth: 8,
-                size: size
+                color: ringColor
             )
 
             VStack(spacing: 2) {
