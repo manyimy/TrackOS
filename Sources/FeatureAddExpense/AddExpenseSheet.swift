@@ -122,7 +122,9 @@ public struct AddExpenseSheet: View {
             }
             .background(theme.color.bg)
             .navigationTitle("Add Expense")
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { onDismiss() }
@@ -175,7 +177,9 @@ public struct AddExpenseSheet: View {
                     get: { model.amountText },
                     set: { model.amountText = $0 }
                 ))
+                #if os(iOS)
                 .keyboardType(.decimalPad)
+                #endif
                 .font(theme.font.display(32))
                 .foregroundStyle(theme.color.text)
                 .frame(maxWidth: .infinity)
