@@ -45,10 +45,13 @@ jobs:
       - name: Select Xcode 16
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
 
-      - name: Build all SPM targets via swift build (iOS-equivalent paths via Catalyst SDK)
+      - name: List available schemes (debug)
+        run: xcodebuild -list
+
+      - name: Build all SPM targets via Mac Catalyst (umbrella = AppShell)
         run: |
           xcodebuild build \
-            -scheme TrackOS \
+            -scheme AppShell \
             -destination 'platform=macOS,variant=Mac Catalyst' \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_TREAT_WARNINGS_AS_ERRORS=NO \
