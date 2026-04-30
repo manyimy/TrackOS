@@ -24,7 +24,9 @@ public struct DashboardView: View {
                         .background(theme.color.bg)
                 }
             }
+            #if os(iOS)
             .toolbar(.hidden, for: .navigationBar)
+            #endif
         }
         .task {
             let m = DashboardModel(expenseService: expenseService, budgetService: budgetService)
