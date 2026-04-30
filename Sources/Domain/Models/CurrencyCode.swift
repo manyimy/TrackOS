@@ -29,6 +29,7 @@ public enum CurrencyCode: String, Codable, Sendable, CaseIterable {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.currencyCode = rawValue.uppercased()
+        formatter.currencySymbol = symbol  // force our symbol regardless of locale
         formatter.roundingMode = .halfEven
         return formatter.string(from: amount as NSDecimalNumber) ?? "\(symbol)\(amount)"
     }
