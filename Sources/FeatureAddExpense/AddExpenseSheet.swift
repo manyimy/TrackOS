@@ -122,7 +122,7 @@ public struct AddExpenseSheet: View {
             }
             .background(theme.color.bg)
             .navigationTitle("Add Expense")
-            #if os(iOS)
+            #if os(iOS) && !targetEnvironment(macCatalyst)
             .navigationBarTitleDisplayMode(.inline)
             #endif
             .toolbar {
@@ -177,7 +177,7 @@ public struct AddExpenseSheet: View {
                     get: { model.amountText },
                     set: { model.amountText = $0 }
                 ))
-                #if os(iOS)
+                #if os(iOS) && !targetEnvironment(macCatalyst)
                 .keyboardType(.decimalPad)
                 #endif
                 .font(theme.font.display(32))

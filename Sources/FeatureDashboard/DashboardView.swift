@@ -24,7 +24,7 @@ public struct DashboardView: View {
                         .background(theme.color.bg)
                 }
             }
-            #if os(iOS)
+            #if os(iOS) && !targetEnvironment(macCatalyst)
             .toolbar(.hidden, for: .navigationBar)
             #endif
         }

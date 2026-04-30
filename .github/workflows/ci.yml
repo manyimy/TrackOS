@@ -53,4 +53,9 @@ jobs:
             -destination 'platform=macOS,variant=Mac Catalyst' \
             CODE_SIGNING_ALLOWED=NO \
             SWIFT_TREAT_WARNINGS_AS_ERRORS=NO \
-            2>&1 | xcpretty --color
+            2>&1 | tee /tmp/xcodebuild.log | xcpretty --color
+          exit ${PIPESTATUS[0]}
+
+      - name: Show raw build log on failure
+        if: failure()
+        run: cat /tmp/xcodebuild.log
