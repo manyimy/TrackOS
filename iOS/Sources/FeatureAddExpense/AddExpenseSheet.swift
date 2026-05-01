@@ -51,7 +51,7 @@ public struct AddExpenseSheet: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: theme.space.xl) {
 
-                    // Amount
+                    // Amount — hero section
                     amountSection(model)
 
                     // Merchant
@@ -84,10 +84,7 @@ public struct AddExpenseSheet: View {
                     // Category
                     if !model.categories.isEmpty {
                         VStack(alignment: .leading, spacing: theme.space.sm) {
-                            Text("Category")
-                                .font(theme.font.label(13))
-                                .foregroundStyle(theme.color.textSecondary)
-                                .padding(.horizontal, theme.space.xl)
+                            sectionLabel("Category")
                             CategoryChipRow(
                                 categories: model.categories,
                                 selectedID: Binding(
@@ -114,9 +111,14 @@ public struct AddExpenseSheet: View {
                     if let error = model.error {
                         Text(error.localizedDescription)
                             .font(theme.font.body(13))
-                            .foregroundStyle(.red)
+                            .foregroundStyle(theme.color.danger)
                             .padding(.horizontal, theme.space.xl)
                     }
+
+                    // Save button — bottom of form
+                    saveButton(model)
+                        .padding(.horizontal, theme.space.xl)
+                        .padding(.top, theme.space.sm)
                 }
                 .padding(.bottom, theme.space.xxxl)
             }
@@ -128,15 +130,8 @@ public struct AddExpenseSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { onDismiss() }
+                        .font(theme.font.body(16))
                         .foregroundStyle(theme.color.textSecondary)
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                        Task { await saveAndDismiss(model) }
-                    }
-                    .font(theme.font.label(16))
-                    .foregroundStyle(model.isValid ? theme.color.accent : theme.color.textTertiary)
-                    .disabled(!model.isValid || model.isSubmitting)
                 }
             }
             .onChange(of: model.didSave) { _, saved in
@@ -145,32 +140,29 @@ public struct AddExpenseSheet: View {
         }
     }
 
-    private func saveAndDismiss(_ model: AddExpenseModel) async {
-        await model.submit()
-    }
-
     @ViewBuilder
     private func amountSection(_ model: AddExpenseModel) -> some View {
-        VStack(alignment: .leading, spacing: theme.space.sm) {
-            Text("Amount")
-                .font(theme.font.label(13))
-                .foregroundStyle(theme.color.textSecondary)
-                .padding(.horizontal, theme.space.xl)
-
-            HStack(spacing: theme.space.sm) {
-                // Currency picker
+        VStack(spacing: theme.space.lg) {
+            // Currency + amount on one prominent line
+            HStack(alignment: .firstTextBaseline, spacing: theme.space.sm) {
                 Menu {
                     ForEach(CurrencyCode.allCases, id: \.self) { code in
-                        Button(code.rawValue) {
+                        Button("\(code.symbol)  \(code.rawValue.uppercased())") {
                             model.selectedCurrency = code
                         }
                     }
                 } label: {
-                    Text(model.selectedCurrency.symbol)
-                        .font(theme.font.label(16))
-                        .foregroundStyle(theme.color.text)
-                        .frame(width: 44, height: 44)
-                        .surface(theme)
+                    HStack(spacing: 4) {
+                        Text(model.selectedCurrency.symbol)
+                            .font(theme.font.title(28))
+                            .foregroundStyle(
+                                model.amountText.isEmpty
+                                    ? theme.color.textTertiary : theme.color.textSecondary
+                            )
+                        Image(systemName: "chevron.down")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundStyle(theme.color.textTertiary)
+                    }
                 }
 
                 TextField("0.00", text: Binding(
@@ -180,21 +172,76 @@ public struct AddExpenseSheet: View {
                 #if os(iOS) && !targetEnvironment(macCatalyst)
                 .keyboardType(.decimalPad)
                 #endif
-                .font(theme.font.display(32))
-                .foregroundStyle(theme.color.text)
-                .frame(maxWidth: .infinity)
+                .font(theme.font.display(48))
+                .foregroundStyle(model.amountText.isEmpty ? theme.color.textTertiary : theme.color.text)
+                .minimumScaleFactor(0.5)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.horizontal, theme.space.xl)
+            .padding(.vertical, theme.space.lg)
+            .background(theme.color.surface)
+            .clipShape(RoundedRectangle(cornerRadius: theme.radius.card, style: .continuous))
+            .overlay(
+                RoundedRectangle(cornerRadius: theme.radius.card, style: .continuous)
+                    .strokeBorder(
+                        model.amountText.isEmpty
+                            ? theme.color.border
+                            : theme.color.accent.opacity(0.5),
+                        lineWidth: 1
+                    )
+            )
+            .padding(.horizontal, theme.space.xl)
+            .padding(.top, theme.space.md)
         }
+    }
+
+    @ViewBuilder
+    private func saveButton(_ model: AddExpenseModel) -> some View {
+        Button {
+            Task { await model.submit() }
+        } label: {
+            ZStack {
+                RoundedRectangle(cornerRadius: theme.radius.lg, style: .continuous)
+                    .fill(
+                        model.isValid
+                            ? LinearGradient(
+                                colors: [Color(hex: "#CAFF58"), Color(hex: "#94D40E")],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                              )
+                            : LinearGradient(
+                                colors: [theme.color.surfaceSecondary, theme.color.surfaceSecondary],
+                                startPoint: .top,
+                                endPoint: .bottom
+                              )
+                    )
+                    .frame(height: 52)
+
+                if model.isSubmitting {
+                    ProgressView()
+                        .tint(theme.color.accentInk)
+                } else {
+                    Text("Save Expense")
+                        .font(theme.font.label(17))
+                        .foregroundStyle(model.isValid ? theme.color.accentInk : theme.color.textTertiary)
+                }
+            }
+        }
+        .disabled(!model.isValid || model.isSubmitting)
+        .animation(.easeInOut(duration: 0.2), value: model.isValid)
+    }
+
+    private func sectionLabel(_ text: String) -> some View {
+        Text(text)
+            .font(theme.font.label(13))
+            .foregroundStyle(theme.color.textSecondary)
+            .padding(.horizontal, theme.space.xl)
     }
 
     @ViewBuilder
     private func fieldSection<Content: View>(title: String, @ViewBuilder content: () -> Content) -> some View {
         VStack(alignment: .leading, spacing: theme.space.sm) {
-            Text(title)
-                .font(theme.font.label(13))
-                .foregroundStyle(theme.color.textSecondary)
-                .padding(.horizontal, theme.space.xl)
+            sectionLabel(title)
             content()
                 .padding(.horizontal, theme.space.xl)
         }

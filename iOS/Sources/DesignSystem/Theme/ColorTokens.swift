@@ -17,42 +17,42 @@ public struct ColorTokens: Sendable {
     public let danger: Color
 
     public static let dark = ColorTokens(
-        bg:               Color(hex: "#0A0A0B"),
-        surface:          Color(hex: "#111114"),
-        surfaceSecondary: Color(hex: "#18181D"),
-        surfaceTertiary:  Color(hex: "#232329"),
-        border:           Color(hex: "#26262C"),
-        divider:          Color(hex: "#26262C"),
-        text:             Color(hex: "#FAFAFA"),
-        textSecondary:    Color(hex: "#A1A1AA"),
-        textTertiary:     Color(hex: "#6B6B73"),
+        bg:               Color(hex: "#09090C"),
+        surface:          Color(hex: "#0F0F14"),
+        surfaceSecondary: Color(hex: "#161620"),
+        surfaceTertiary:  Color(hex: "#1E1E2A"),
+        border:           Color(hex: "#2A2A38"),
+        divider:          Color(hex: "#1E1E28"),
+        text:             Color(hex: "#F0F0F8"),
+        textSecondary:    Color(hex: "#9898B0"),
+        textTertiary:     Color(hex: "#56566A"),
         accent:           Color(hex: "#B6FF3D"),
-        accentInk:        Color(hex: "#0A0A0B"),
-        good:             Color(hex: "#5EE6A4"),
-        warn:             Color(hex: "#FF9F45"),
-        danger:           Color(hex: "#FF5C5C")
+        accentInk:        Color(hex: "#0A1400"),
+        good:             Color(hex: "#4ADE80"),
+        warn:             Color(hex: "#FB923C"),
+        danger:           Color(hex: "#F87171")
     )
 
     public static let light = ColorTokens(
-        bg:               Color(hex: "#FAFAF7"),
+        bg:               Color(hex: "#F5F5F2"),
         surface:          Color(hex: "#FFFFFF"),
-        surfaceSecondary: Color(hex: "#F4F4F0"),
-        surfaceTertiary:  Color(hex: "#EDEDE8"),
+        surfaceSecondary: Color(hex: "#EFEFEB"),
+        surfaceTertiary:  Color(hex: "#E6E6E2"),
         border:           Color.clear,
         divider:          Color.black.opacity(0.06),
-        text:             Color(hex: "#18181C"),
-        textSecondary:    Color(hex: "#5A5A60"),
-        textTertiary:     Color(hex: "#9C9CA3"),
+        text:             Color(hex: "#16161A"),
+        textSecondary:    Color(hex: "#58586A"),
+        textTertiary:     Color(hex: "#9A9AAA"),
         accent:           Color(hex: "#5BA800"),
         accentInk:        Color(hex: "#FFFFFF"),
-        good:             Color(hex: "#1FA86A"),
-        warn:             Color(hex: "#E07820"),
-        danger:           Color(hex: "#DC3838")
+        good:             Color(hex: "#16A34A"),
+        warn:             Color(hex: "#D97706"),
+        danger:           Color(hex: "#DC2626")
     )
 }
 
 extension Color {
-    init(hex: String) {
+    public init(hex: String) {
         let h = hex.trimmingCharacters(in: CharacterSet(charactersIn: "#"))
         var rgb: UInt64 = 0
         Scanner(string: h).scanHexInt64(&rgb)

@@ -40,30 +40,10 @@ public struct DashboardView: View {
         ZStack(alignment: .bottomTrailing) {
             ScrollView(showsIndicators: false) {
                 LazyVStack(spacing: theme.space.xl) {
-                    // Greeting
-                    HStack {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(model.greeting)
-                                .font(theme.font.body(14))
-                                .foregroundStyle(theme.color.textSecondary)
-                            Text("TrackOS")
-                                .font(theme.font.title(28))
-                                .foregroundStyle(theme.color.text)
-                        }
-                        Spacer()
-                        Circle()
-                            .fill(theme.color.accent.opacity(0.2))
-                            .frame(width: 42, height: 42)
-                            .overlay(
-                                Text("T")
-                                    .font(theme.font.label(16))
-                                    .foregroundStyle(theme.color.accent)
-                            )
-                    }
-                    .padding(.horizontal, theme.space.xl)
-                    .padding(.top, theme.space.xl)
+                    header(model)
+                        .padding(.horizontal, theme.space.xl)
+                        .padding(.top, theme.space.xl)
 
-                    // Balance card
                     BalanceCard(
                         total: model.totalSpent,
                         currency: model.currency,
@@ -72,18 +52,15 @@ public struct DashboardView: View {
                     )
                     .padding(.horizontal, theme.space.xl)
 
-                    // Period picker
                     periodPicker(model)
                         .padding(.horizontal, theme.space.xl)
 
-                    // Quick actions
                     QuickActionsRow(
                         onAddExpense: { showAddExpense = true },
                         onScanReceipt: {}
                     )
                     .padding(.horizontal, theme.space.xl)
 
-                    // Recent
                     if !model.expenses.isEmpty {
                         VStack(alignment: .leading, spacing: theme.space.md) {
                             Text("Recent")
@@ -97,23 +74,14 @@ public struct DashboardView: View {
                         emptyState
                     }
                 }
-                .padding(.bottom, 100)
+                .padding(.bottom, 110)
             }
             .background(theme.color.bg)
             .refreshable { await model.load() }
 
-            // FAB
-            Button { showAddExpense = true } label: {
-                Image(systemName: "plus")
-                    .font(.system(size: 22, weight: .semibold))
-                    .foregroundStyle(theme.color.accentInk)
-                    .frame(width: 58, height: 58)
-                    .background(theme.color.accent)
-                    .clipShape(Circle())
-                    .shadow(color: theme.color.accent.opacity(0.4), radius: 16, y: 6)
-            }
-            .padding(.trailing, theme.space.xl)
-            .padding(.bottom, 96)
+            fab
+                .padding(.trailing, theme.space.xl)
+                .padding(.bottom, 100)
         }
         .sheet(isPresented: $showAddExpense) {
             addExpensePresenter({
@@ -124,24 +92,77 @@ public struct DashboardView: View {
         .task(id: model.selectedPeriod) { await model.load() }
     }
 
+    private var fab: some View {
+        Button { showAddExpense = true } label: {
+            ZStack {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [Color(hex: "#CAFF58"), Color(hex: "#94D40E")],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 60, height: 60)
+                    .shadow(color: theme.color.accent.opacity(0.45), radius: 20, y: 8)
+                Image(systemName: "plus")
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundStyle(theme.color.accentInk)
+            }
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func header(_ model: DashboardModel) -> some View {
+        HStack(alignment: .center) {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(model.greeting)
+                    .font(theme.font.body(13))
+                    .foregroundStyle(theme.color.textSecondary)
+                Text("TrackOS")
+                    .font(theme.font.title(26))
+                    .foregroundStyle(theme.color.text)
+            }
+            Spacer()
+            ZStack {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [theme.color.accent.opacity(0.3), theme.color.accent.opacity(0.1)],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 42, height: 42)
+                Text("T")
+                    .font(theme.font.label(16))
+                    .foregroundStyle(theme.color.accent)
+            }
+            .overlay(Circle().strokeBorder(theme.color.accent.opacity(0.25), lineWidth: 1))
+        }
+    }
+
     private func periodPicker(_ model: DashboardModel) -> some View {
         HStack(spacing: 0) {
             ForEach(DashboardModel.Period.allCases, id: \.self) { period in
                 Button {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.75)) {
                         model.selectedPeriod = period
                     }
                 } label: {
                     Text(period.rawValue)
-                        .font(theme.font.label(14))
+                        .font(theme.font.label(13))
                         .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                        .foregroundStyle(model.selectedPeriod == period
-                                         ? theme.color.text : theme.color.textSecondary)
+                        .padding(.vertical, 9)
+                        .foregroundStyle(
+                            model.selectedPeriod == period
+                                ? theme.color.text : theme.color.textTertiary
+                        )
                         .background {
                             if model.selectedPeriod == period {
-                                RoundedRectangle(cornerRadius: theme.radius.sm, style: .continuous)
+                                RoundedRectangle(cornerRadius: theme.radius.sm + 2, style: .continuous)
                                     .fill(theme.color.surfaceSecondary)
+                                    .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
                             }
                         }
                 }
@@ -155,15 +176,22 @@ public struct DashboardView: View {
 
     private var emptyState: some View {
         VStack(spacing: theme.space.lg) {
-            Image(systemName: "tray.fill")
-                .font(.system(size: 48))
-                .foregroundStyle(theme.color.textTertiary)
-            Text("No expenses yet")
-                .font(theme.font.title(17))
-                .foregroundStyle(theme.color.text)
-            Text("Tap + to add your first expense")
-                .font(theme.font.body(14))
-                .foregroundStyle(theme.color.textSecondary)
+            ZStack {
+                Circle()
+                    .fill(theme.color.surfaceSecondary)
+                    .frame(width: 80, height: 80)
+                Image(systemName: "tray")
+                    .font(.system(size: 32, weight: .light))
+                    .foregroundStyle(theme.color.textTertiary)
+            }
+            VStack(spacing: theme.space.sm) {
+                Text("No expenses yet")
+                    .font(theme.font.title(17))
+                    .foregroundStyle(theme.color.text)
+                Text("Tap + to log your first expense")
+                    .font(theme.font.body(14))
+                    .foregroundStyle(theme.color.textSecondary)
+            }
         }
         .frame(maxWidth: .infinity)
         .padding(theme.space.xxxl)

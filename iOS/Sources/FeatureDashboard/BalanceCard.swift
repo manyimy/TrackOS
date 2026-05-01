@@ -23,41 +23,72 @@ public struct BalanceCard: View {
 
     public var body: some View {
         ZStack(alignment: .topLeading) {
-            // Background
+            // Base gradient
             RoundedRectangle(cornerRadius: theme.radius.xl, style: .continuous)
-                .fill(theme.color.accent)
+                .fill(
+                    LinearGradient(
+                        colors: [Color(hex: "#CAFF58"), Color(hex: "#94D40E")],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                )
 
-            // Decorative circles
-            Circle().fill(theme.color.accentInk.opacity(0.06))
-                .frame(width: 240).offset(x: 100, y: -80)
-            Circle().fill(theme.color.accentInk.opacity(0.04))
-                .frame(width: 160).offset(x: -40, y: 90)
+            // Spotlight highlight top-right
+            Circle()
+                .fill(Color.white.opacity(0.18))
+                .frame(width: 220)
+                .offset(x: 160, y: -100)
+                .blur(radius: 40)
+
+            // Decorative orbs
+            Circle()
+                .fill(theme.color.accentInk.opacity(0.07))
+                .frame(width: 180)
+                .offset(x: -30, y: 80)
+            Circle()
+                .fill(Color.white.opacity(0.06))
+                .frame(width: 100)
+                .offset(x: 250, y: 60)
 
             VStack(alignment: .leading, spacing: theme.space.sm) {
-                HStack {
-                    Text("Total Spent")
-                        .font(theme.font.label(13))
-                        .foregroundStyle(theme.color.accentInk.opacity(0.7))
+                HStack(alignment: .center) {
+                    Label {
+                        Text("Total Spent")
+                            .font(theme.font.label(12))
+                    } icon: {
+                        Image(systemName: "chart.bar.fill")
+                            .font(.system(size: 11))
+                    }
+                    .foregroundStyle(theme.color.accentInk.opacity(0.6))
+
                     Spacer()
-                    Label("\(expenseCount)", systemImage: "creditcard")
-                        .font(theme.font.label(12))
-                        .foregroundStyle(theme.color.accentInk.opacity(0.8))
-                        .padding(.horizontal, theme.space.md)
-                        .padding(.vertical, 5)
-                        .background(theme.color.accentInk.opacity(0.15))
-                        .clipShape(Capsule())
+
+                    HStack(spacing: 4) {
+                        Image(systemName: "creditcard.fill")
+                            .font(.system(size: 10, weight: .semibold))
+                        Text("\(expenseCount)")
+                            .font(theme.font.label(12))
+                    }
+                    .foregroundStyle(theme.color.accentInk.opacity(0.75))
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 5)
+                    .background(theme.color.accentInk.opacity(0.12))
+                    .clipShape(Capsule())
                 }
 
-                Text(currency.format(total))
-                    .font(theme.font.display(40))
-                    .foregroundStyle(theme.color.accentInk)
+                Spacer()
 
-                Text("This \(period.rawValue.lowercased())")
+                Text(currency.format(total))
+                    .font(theme.font.display(42))
+                    .foregroundStyle(theme.color.accentInk)
+                    .contentTransition(.numericText())
+
+                Text("this \(period.rawValue.lowercased())")
                     .font(theme.font.body(13))
-                    .foregroundStyle(theme.color.accentInk.opacity(0.6))
+                    .foregroundStyle(theme.color.accentInk.opacity(0.55))
             }
             .padding(theme.space.xl)
         }
-        .frame(height: 162)
+        .frame(height: 170)
     }
 }
