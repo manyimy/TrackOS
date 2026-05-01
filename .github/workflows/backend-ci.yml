@@ -1,0 +1,68 @@
+name: Backend CI
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "Backend/**"
+      - ".github/workflows/backend-ci.yml"
+  pull_request:
+    branches: ["**"]
+    paths:
+      - "Backend/**"
+      - ".github/workflows/backend-ci.yml"
+
+defaults:
+  run:
+    working-directory: Backend
+
+jobs:
+  test:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: trackos
+          POSTGRES_PASSWORD: trackos
+          POSTGRES_DB: trackos_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: swift build
+
+      - name: Run tests
+        env:
+          DB_HOST: localhost
+          DB_USER: trackos
+          DB_PASSWORD: trackos
+          DB_NAME: trackos_test
+          REDIS_URL: redis://localhost:6379
+          JWT_SECRET: ci-test-secret
+        run: swift test
+
+  docker:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t trackos-backend:${{ github.sha }} .
+        working-directory: Backend
