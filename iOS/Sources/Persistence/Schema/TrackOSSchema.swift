@@ -7,5 +7,6 @@ public enum TrackOSSchema: VersionedSchema {
         Budget.self,
         Category.self,
         Account.self,
+        SyncTombstone.self,
     ]
 }

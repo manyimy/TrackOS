@@ -6,11 +6,18 @@ public final class ExpenseService: ExpenseServiceProtocol {
     private let repo: ExpenseRepository
     private let fx: any FXServiceProtocol
     private let classifier: any CategoryClassifierProtocol
+    private let sync: any RemoteSyncServiceProtocol
 
-    public init(repo: ExpenseRepository, fx: any FXServiceProtocol, classifier: any CategoryClassifierProtocol) {
+    public init(
+        repo: ExpenseRepository,
+        fx: any FXServiceProtocol,
+        classifier: any CategoryClassifierProtocol,
+        sync: any RemoteSyncServiceProtocol = NoOpSyncService()
+    ) {
         self.repo = repo
         self.fx = fx
         self.classifier = classifier
+        self.sync = sync
     }
 
     public func create(_ new: NewExpense) async throws {
@@ -24,15 +31,18 @@ public final class ExpenseService: ExpenseServiceProtocol {
             )
         }
         try await repo.create(validated)
+        Task { await sync.sync() }
     }
 
     public func update(id: UUID, with new: NewExpense) async throws {
         try ExpenseValidation.validate(new)
         try await repo.update(id: id, with: new)
+        Task { await sync.sync() }
     }
 
     public func delete(id: UUID) async throws {
         try await repo.delete(id: id)
+        Task { await sync.sync() }
     }
 
     public func fetch(in range: DateInterval) async throws -> [ExpenseDTO] {
