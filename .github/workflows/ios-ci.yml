@@ -1,10 +1,20 @@
-name: CI
+name: iOS CI
 
 on:
   push:
     branches: ["**"]
+    paths:
+      - "iOS/**"
+      - ".github/workflows/ios-ci.yml"
   pull_request:
     branches: ["**"]
+    paths:
+      - "iOS/**"
+      - ".github/workflows/ios-ci.yml"
+
+defaults:
+  run:
+    working-directory: iOS
 
 jobs:
   # ── Unit tests (Domain + Persistence + FeatureAddExpense) ───────────────────
@@ -32,8 +42,8 @@ jobs:
 
   # ── iOS compilation check (catches SwiftUI / SwiftData errors) ──────────────
   # Mac Catalyst is used because the iOS platform SDK is not pre-installed on
-  # the runner. Catalyst compiles #if os(iOS) code paths identically to iOS
-  # and is always available alongside the macOS SDK in Xcode.
+  # the runner. Catalyst compiles #if os(iOS) && !targetEnvironment(macCatalyst)
+  # guards correctly — they compile on iOS and skip on Catalyst.
   build-ios:
     name: iOS Build Check
     runs-on: macos-15
