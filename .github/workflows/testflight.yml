@@ -1,0 +1,105 @@
+name: Build & Upload to TestFlight
+
+on:
+  push:
+    branches: [main, testflight]
+    paths:
+      - "iOS/**"
+      - ".github/workflows/testflight.yml"
+
+jobs:
+  build-and-upload:
+    name: Build & Upload TestFlight
+    runs-on: macos-15
+    environment: testflight
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 16
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+
+      - name: Generate Xcode project from SPM
+        working-directory: iOS
+        run: swift package generate-xcodeproj
+
+      - name: Install dependencies via CocoaPods (if needed)
+        run: |
+          cd iOS
+          gem install cocoapods
+          pod install --repo-update || true
+
+      - name: Build for iOS
+        working-directory: iOS
+        env:
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+        run: |
+          xcodebuild build-for-testing \
+            -scheme TrackOS \
+            -configuration Release \
+            -sdk iphoneos \
+            -derivedDataPath DerivedData \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO
+
+      - name: Build archive for distribution
+        working-directory: iOS
+        env:
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
+        run: |
+          xcodebuild archive \
+            -scheme TrackOS \
+            -configuration Release \
+            -derivedDataPath DerivedData \
+            -archivePath TrackOS.xcarchive \
+            -allowProvisioningUpdates \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="TrackOS AppStore" \
+            DEVELOPMENT_TEAM=$TEAM_ID
+
+      - name: Export IPA
+        working-directory: iOS
+        env:
+          TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath TrackOS.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath ExportedApp \
+            -allowProvisioningUpdates \
+            DEVELOPMENT_TEAM=$TEAM_ID
+
+      - name: Upload to TestFlight
+        working-directory: iOS
+        env:
+          ASC_API_KEY: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
+          ASC_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+        run: |
+          # Install xcpretty for log parsing
+          gem install xcpretty
+
+          # Upload using xcrun altool (requires App Store Connect API key)
+          # Save API key to temp file
+          echo "$ASC_API_KEY" > /tmp/api_key.p8
+
+          xcrun altool \
+            --upload-app \
+            --type ios \
+            --file ExportedApp/TrackOS.ipa \
+            --apiKey $ASC_API_KEY_ID \
+            --apiIssuer $ASC_ISSUER_ID \
+            --showProgress
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✅ Build successful! Check TestFlight in App Store Connect"
+          echo "   Your app will be available to testers within ~30 minutes"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ Build failed. Check the logs above for details."
